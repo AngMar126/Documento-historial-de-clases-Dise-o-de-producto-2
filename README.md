@@ -290,3 +290,28 @@ Con esto podemos concluir que:
 ## Capítulo 3:
 
 Se tuvo que tener en cuenta que las ideas propuestas no se hayan realizado anteriormente en el curso, o que si ya hay un proyecto existente de esa idea, entonces se debería de agregar alguna mejora. Preferiblemente se debería de escoger alguna idea que no se haya trabajado. Por ello no se escogió la propuesta que quedo en primer lugar (KeyFinder Pro), entonces se tuvo que indagar acerca de los siguientes puestos de la lista, cercanos al primer lugar y que se cumpla con lo anteriormente mencionado. Finalizando el ejercicio se decició escoger las propuestas:  **Reciclajeficiente** (Sistema de reciclaje inteligente), y **SmartEyes** (Gafas inteligentes).
+
+### Realización de Requerimientos
+Lo siguiente a realizar, es el enlistamiento y redacción de los requerimientos funcionales y no funcionales de las dos propuestas escogidas, esto para revisar y seleccionar cual es el más apto a desarrollar, dependiendo de cuantos requerimientos debe cumplir y su dificultad. En este caso los requerimientos de cada uno son los siguientes:
+
+**Requerimientos proyecto Reciclajeficiente (Sistema de reciclaje inteligente)**
+| Funcionales | No Funcionales |
+|-------------|----------------|
+| Avisar al estar llena | Adaptable a diferentes espacios (hogar, industria, universidades, centros comerciales) |
+| Manejo de residuos diferenciados (clasificación: papel, cartón, botellas, orgánicos, metal) | De uso asequible (costo accesible para el público) |
+| Que pueda vaciarse fácil (compartimientos accesibles) | Escalable a centros de acopio (uso industrial) |
+| Proyección de videos educativos sobre reciclaje | Resistente, higiénica y segura |
+| Iluminación para visibilidad en lugares oscuros | Eficiencia energética (panel solar o bajo consumo) |
+| Cámara con IA | Contribución al medio ambiente |
+| Pantalla con estadísticas de reciclaje realizada en la caneca | Resistente al agua |
+
+**Requerimientos proyecto SmartEyes (Gafas inteligentes)**
+| Funcionales | No Funcionales |
+|-------------|----------------|
+| Traducción en tiempo real (texto o voz) | Diseño liviano, cómodo y discreto |
+| Notificaciones conectadas vía Bluetooth | Estilo variado (no muy tecnológico a la vista) |
+| Cámara integrada con opción de grabar videos y conexión al celular | Recargables (batería de larga duración) |
+| Localización de las gafas (alarma o luz al activarse por voz) | Materiales resistentes |
+| Protección UV, filtros de luz y transición fotocromática | Opciones de personalización (color, estilo, modelos) |
+| Dictado de hora por voz |  |
+| Despertar a conductor con somnolencia con vibración o alarma |  |
