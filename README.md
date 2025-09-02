@@ -238,3 +238,40 @@ Sin embargo, para escoger dos ideas, para que alguno sea el candidato a producto
 <img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/b9545de3-e061-408b-acc3-3753ef9644a5" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/0c2fd2c4-37e7-43f3-9d85-dd1021c2d8a0" />
 
+Reuniendo todas las estadisticas, podemos realizar un listado de las ideas entre mayor y menor preferencia que sería el siguiente:
+  1.	KeyFinder Pro – 100%
+(Dispositivo para encontrar objetos personales)
+  2.	NiceLife – 88.9%
+(Asistente para personas mayores con detección de caídas)
+  3.	MediCare+ – 82.6%
+(Dispensador automático de medicamentos)
+  4.	Reciclajeficiente – 77.8%
+(Sistema de reciclaje inteligente)
+  5.	JumpStart 12V – 69.6%
+(Batería portátil para arranque de autos)
+  6.	SmartEyes – 63%
+(Gafas inteligentes para visión y detección de obstáculos)
+  7.	CoolAir Auto – 39.1%
+(Ventilador automático por temperatura)
+  8.	HappyPlants – 33.3%
+(Invernadero autónomo con control climático)
+  9.	GoodClothing – 29.6%
+(Closet inteligente con sugerencias de outfits)
+  10.	SunTrack – 13%
+(Panel solar con seguidor para ahorro energético)
+
+Y esto se puede visualizar en el siguiente grafico.
+<p align="center">
+<img width="450" height="400" alt="imagen" src="https://github.com/user-attachments/assets/5f27de38-6c8a-464f-9580-97bfa4fd396d" />
+</p>
+
+Con esto podemos concluir que:
+
+  - KeyFinder Pro es el más demandado (aceptación unánime).
+  - NiceLife y MediCare+ destacan en soluciones de salud y asistencia.
+  - SunTrack y GoodClothing tienen la menor preferencia, posiblemente por nichos más específicos.
+    
+
+## Capítulo 3:
+
+Se tuvo que tener en cuenta que las ideas propuestas no se hayan realizado anteriormente en el curso, o que si ya hay un proyecto existente de esa idea, entonces se debería de agregar alguna mejora. Preferiblemente se debería de escoger alguna idea que no se haya trabajado. Por ello no se escogió la propuesta que quedo en primer lugar (KeyFinder Pro), entonces se tuvo que indagar acerca de los siguientes puestos de la lista, cercanos al primer lugar y que se cumpla con lo anteriormente mencionado. Finalizando el ejercicio se decició escoger las propuestas:  **Reciclajeficiente** (Sistema de reciclaje inteligente), y **SmartEyes** (Gafas inteligentes).
