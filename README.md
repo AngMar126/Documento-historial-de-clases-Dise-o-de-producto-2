@@ -320,3 +320,5 @@ Lo siguiente a realizar, es el enlistamiento y redacción de los requerimientos 
 Se realizó un código en **lenguaje C** en la plataforma **platform.io** dentro de la aplicación **VisualStudio**, esto para familiarizarse con el entorno al momento de realizar el código para el proyecto seleccionado. Este se baso en el control simple del integrado al módulo **ESP-WROOM-32**.
 Esto se puede ver de la siguiente manera:
 
+[Código de parpadeo de LED integrado.txt](https://github.com/user-attachments/files/22105012/Codigo.de.parpadeo.de.LED.integrado.txt)
+
