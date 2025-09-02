@@ -326,3 +326,19 @@ Su código es el siguiente (También dentro de este repertorio esta el archivo .
 Y se puede ver de la siguiente manera:
 
 ![Parpadeo led](https://github.com/user-attachments/assets/a523c016-8ea7-49df-81a0-d271230e7427)
+
+## Capítulo 4 
+
+Se socializaron los requerimientos y con ellos se procedió a realizar un análisis DOFA (Debilidades, Oportunidades, Fortalezas y Amenazas), para identificar factores internos y externos para tomar desiciones más eficaces y planear estrategias en el proyecto, además de visualizar cual es más viable a realizar.
+
+### Análisis DOFA
+
+**DOFA proyecto Reciclajeficiente (Sistema de reciclaje inteligente)**
+
+| Fortalezas | Oportunidades |
+|------------|---------------|
+| Promueve el reciclaje con incentivos → impacto social y ambiental positivo.| Alta demanda en programas de reciclaje y economía circular.|
+| Fácil de justificar en proyectos de sostenibilidad, universidades, empresas y ciudades inteligentes.| Posible financiamiento gubernamental o municipal.|
+| Puede incluir sensores relativamente económicos (peso, nivel, humedad, inductivos).| Integración en proyectos de ciudades sostenibles.|
+| Uso masivo en espacios públicos (gran alcance de usuarios).| Alianzas con empresas de reciclaje o de aseo.|
+
