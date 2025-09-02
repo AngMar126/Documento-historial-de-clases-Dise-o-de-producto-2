@@ -125,7 +125,7 @@ Las preguntas para cada propuesta fueron las siguientes:
 <img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/4e26cb43-b8e1-4663-817c-42d5ef1b4401" />
 <img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/cc59d73b-637c-4a7e-a56e-23015dcb5b84" /><br><br>
 
-Gracias a la herramienta Google Forms, la cual permitió la realización de las anteriores encuestas, también se logró obtener estadísitcas visuales acerca de las respuestas obtenidas en cada pregunta. Las cuales fueron las siguientes (las estadísticas a continuación nos ayudarán más adelante en la realización de los requerimientos del producto a realizar).
+Gracias a la herramienta Google Forms, la cual permitió la realización de las anteriores encuestas a 50 personas, también se logró obtener estadísticas visuales acerca de las respuestas obtenidas en cada pregunta. Las cuales fueron las siguientes (las estadísticas a continuación nos ayudarán más adelante en la realización de los requerimientos del producto a realizar).
 
 **KeyFinder Pro** (Buscador de objetos personales).
 
@@ -174,14 +174,67 @@ Gracias a la herramienta Google Forms, la cual permitió la realización de las 
 <img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/f59a077d-5df9-4192-b5f6-d1b708759bf7" />
 <img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/e9670d13-8243-4827-9047-683a80c2f2ab" /><br><br>
 
-
 **SmartEyes** (Gafas inteligentes).
+
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/cd599219-c514-448c-ae4a-1d322f92e8ee" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/26d9e813-ab02-4156-97ed-ad23633833d3" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/b3a2c6ef-7007-4f68-a4ca-3e0672be266e" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/a56bc6ac-6393-450a-b2a0-a2a06c504ef1" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/ba379133-859f-4b51-90dd-d73b59d46080" /><br><br>
+
 **GoodClothing** (Closet inteligente con gestión de prendas).
+
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/1d976e79-a03c-4906-92d0-9d360b854d98" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/d2bf1adb-cad5-4890-9aad-b482e5a32090" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/7ec4d5cd-c799-4012-a7d2-aebf721c8859" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/c6926759-3296-4540-a4dd-f8a6d9d2a7e9" /><br><br>
+
 **NiceLife** (Sistema de asistencia para personas mayores).
+
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/25d89633-c0c3-4f25-a1e9-300e41362578" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/03d69d08-7b3e-4a99-a271-492ad1392696" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/73f98ee2-fb00-4392-b074-523ad5c6252b" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/63a868e8-a36b-47ba-af56-bfc08d8b58c4" /><br><br>
+
 **Reciclajeficiente** (Sistema de reciclaje inteligente).
+
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/2a11c461-6305-409d-a1fb-726c0f923d4f" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/840ef0f5-e215-453a-99d0-2edf16ce74f2" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/316f4756-20ed-4aaf-954f-8c095de515fd" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/7b3735dd-e398-47cd-a793-1076ef2e0890" /><br><br>
+
 **HappyPlants** (Invernadero autónomo con control de clima).
 
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/70f8eef9-bd99-4fe8-b4e1-936e7f60abca" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/e9fa94c1-a7ba-42b4-a2ae-108384427132" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/a72a782c-8e4a-4b69-b610-080e4892b90c" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/c76aa720-8d27-4539-a972-aff9af4c9a9f" /><br><br>
 
+### Selección de ideas
+Sin embargo, para escoger dos ideas, para que alguno sea el candidato a producto a realizar. Se tomaron en cuenta las estadisticas correspondientes a preferencia de cada idea, midiendo el interés de la población en cada producto.
 
+**KeyFinder Pro** (Buscador de objetos personales). &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MediCare+** (Dispensador de medicamentos).
 
+<img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/97c4493e-57b2-45dd-a074-0af82b8575e1" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/d27457fe-eb56-486d-9c1b-8d42c47a17a6" />
+
+**CoolAir Auto** (Ventilador automático por temperatura). &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SunTrack** (Panel solar con seguidor).
+
+<img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/01e82f4f-96b8-4298-909c-a1e08b6df737" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/6879fab0-6267-43e9-91ca-2f6202e2b6a1" />
+
+**JumpStart 12V** (Batería portátil de arranque). &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SmartEyes** (Gafas inteligentes).
+
+<img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/1c135c83-458a-4204-8492-db903050290f" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/6cf67f34-ca31-4322-9c18-8506d8c21229" />
+
+**GoodClothing** (Closet inteligente con gestión de prendas). &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NiceLife** (Sistema de asistencia para personas mayores).
+
+<img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/26ff2428-8d98-4386-8b15-5a7f0cb359e1" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/b90850a8-b648-40c2-9e63-9b64dadc81a9" />
+
+**Reciclajeficiente** (Sistema de reciclaje inteligente). &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HappyPlants** (Invernadero autónomo con control de clima).
+
+<img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/b9545de3-e061-408b-acc3-3753ef9644a5" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/0c2fd2c4-37e7-43f3-9d85-dd1021c2d8a0" />
 
