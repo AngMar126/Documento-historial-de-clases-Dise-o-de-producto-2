@@ -335,10 +335,10 @@ Se socializaron los requerimientos y con ellos se procedió a realizar un análi
 
 **DOFA proyecto Reciclajeficiente (Sistema de reciclaje inteligente)**
 
-| Fortalezas | Oportunidades |
-|------------|---------------|
-| Promueve el reciclaje con incentivos → impacto social y ambiental positivo.| Alta demanda en programas de reciclaje y economía circular.|
-| Fácil de justificar en proyectos de sostenibilidad, universidades, empresas y ciudades inteligentes.| Posible financiamiento gubernamental o municipal.|
-| Puede incluir sensores relativamente económicos (peso, nivel, humedad, inductivos).| Integración en proyectos de ciudades sostenibles.|
-| Uso masivo en espacios públicos (gran alcance de usuarios).| Alianzas con empresas de reciclaje o de aseo.|
+| Fortalezas | Oportunidades | Debilidades | Amenazas |
+|------------|---------------|-------------|----------|
+| Promueve el reciclaje con incentivos → impacto social y ambiental positivo.| Alta demanda en programas de reciclaje y economía circular.|Requiere mantenimiento (autolimpieza, drenaje de líquidos).| Competencia con sistemas tradicionales de reciclaje (económicos y simples).|
+| Fácil de justificar en proyectos de sostenibilidad, universidades, empresas y ciudades inteligentes.| Posible financiamiento gubernamental o municipal.| Posible complejidad mecánica al integrar diferentes sensores y compuertas.| Normativas ambientales que podrían limitar algunos componentes (ej. cámaras con IA por privacidad).|
+| Puede incluir sensores relativamente económicos (peso, nivel, humedad, inductivos).| Integración en proyectos de ciudades sostenibles.| Riesgo de vandalismo o mal uso en espacios públicos.| Necesidad de robustez alta en exteriores (clima, golpes, humedad).|
+| Uso masivo en espacios públicos (gran alcance de usuarios).| Alianzas con empresas de reciclaje o de aseo.| Costo inicial puede ser elevado para hogares.| |
 
