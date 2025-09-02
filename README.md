@@ -125,6 +125,61 @@ Las preguntas para cada propuesta fueron las siguientes:
 <img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/4e26cb43-b8e1-4663-817c-42d5ef1b4401" />
 <img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/cc59d73b-637c-4a7e-a56e-23015dcb5b84" /><br><br>
 
+Gracias a la herramienta Google Forms, la cual permitió la realización de las anteriores encuestas, también se logró obtener estadísitcas visuales acerca de las respuestas obtenidas en cada pregunta. Las cuales fueron las siguientes (las estadísticas a continuación nos ayudarán más adelante en la realización de los requerimientos del producto a realizar).
+
+**KeyFinder Pro** (Buscador de objetos personales).
+
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/a32ebeb6-4605-46b9-b52b-7f93070d4115" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/edbf71da-f2f2-4d42-be96-58f1a95fa58d" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/02b859bb-c70d-4e1d-9c86-f085db1742b9" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/72e98905-cbaf-4564-91c7-a303dcfa9d60" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/d4967b2c-ea17-4f3d-8b0f-d23e202bbf91" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/daf001f5-e2dc-4a25-8908-7213b0292903" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/d965b7f8-a9db-4bb3-91ca-415ec3731697" /><br><br>
+
+**MediCare+** (Dispensador de medicamentos).
+
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/40db985f-999b-4265-b5eb-8782520d3ad8" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/f22dab36-de71-4771-a16e-8f6a72d4840c" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/c98dcb98-05a8-4919-9620-b258f0399ac9" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/1fdd9c44-2ffc-4306-861a-683d74646190" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/cbeeebbf-f74b-4431-a6b0-109449238f9a" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/979e347b-00cc-40bc-a57a-ac14386b27a0" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/ad638a07-7c6c-4dd4-bbad-acc628525fda" /><br><br>
+
+**CoolAir Auto** (Ventilador automático por temperatura).
+
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/1cc01ee0-e944-407b-b0b8-7256f389434a" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/0fb0946a-0bda-48bd-a0ee-c7c7406963c3" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/80c2f9fa-4341-4f9c-aab5-177c1173ab17" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/9507443f-1bfc-43a4-a1b4-ec560aa3b5ef" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/7475a290-3361-4b73-9dbf-d24d052b250c" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/8f02afb4-597e-4412-a186-9e1af92598bc" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/6201903e-211c-4f35-912d-29fd6e9f911f" /><br><br>
+
+**SunTrack** (Panel solar con seguidor).
+
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/4954bc32-a046-42d7-b2bc-18a5c8b1d257" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/929aa912-24bd-4839-b192-c66b91aeb4ac" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/5fcc2c17-f64e-46aa-8206-1d5eed633980" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/c601796c-c838-40fd-a5e0-7df7dae48649" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/9324aa7d-1799-4d2a-92f1-b2eb2ee0f4bb" /><br><br>
+
+**JumpStart 12V** (Batería portátil de arranque).
+
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/12de13ba-0db8-4ec8-b067-4c9b0f44f297" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/a86d5b2d-3d92-4383-bd7e-405c4ab7742f" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/3d15f2df-c7ce-4d37-9555-14e3df9ff6a0" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/0864f9da-e373-4956-a383-ffa1ea93e034" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/f59a077d-5df9-4192-b5f6-d1b708759bf7" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/e9670d13-8243-4827-9047-683a80c2f2ab" /><br><br>
+
+
+**SmartEyes** (Gafas inteligentes).
+**GoodClothing** (Closet inteligente con gestión de prendas).
+**NiceLife** (Sistema de asistencia para personas mayores).
+**Reciclajeficiente** (Sistema de reciclaje inteligente).
+**HappyPlants** (Invernadero autónomo con control de clima).
 
 
 
