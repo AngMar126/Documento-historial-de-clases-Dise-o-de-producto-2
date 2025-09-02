@@ -315,3 +315,8 @@ Lo siguiente a realizar, es el enlistamiento y redacción de los requerimientos 
 | Protección UV, filtros de luz y transición fotocromática | Opciones de personalización (color, estilo, modelos) |
 | Dictado de hora por voz |  |
 | Despertar a conductor con somnolencia con vibración o alarma |  |
+
+### Actividad en clase 1
+Se realizó un código en **lenguaje C** en la plataforma **platform.io** dentro de la aplicación **VisualStudio**, esto para familiarizarse con el entorno al momento de realizar el código para el proyecto seleccionado. Este se baso en el control simple del integrado al módulo **ESP-WROOM-32**.
+Esto se puede ver de la siguiente manera:
+
