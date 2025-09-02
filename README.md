@@ -342,3 +342,11 @@ Se socializaron los requerimientos y con ellos se procedió a realizar un análi
 | Puede incluir sensores relativamente económicos (peso, nivel, humedad, inductivos).| Integración en proyectos de ciudades sostenibles.| Riesgo de vandalismo o mal uso en espacios públicos.| Necesidad de robustez alta en exteriores (clima, golpes, humedad).|
 | Uso masivo en espacios públicos (gran alcance de usuarios).| Alianzas con empresas de reciclaje o de aseo.| Costo inicial puede ser elevado para hogares.| |
 
+**DOFA proyecto proyecto SmartEyes (Gafas inteligentes)**
+
+| Fortalezas | Oportunidades | Debilidades | Amenazas |
+|------------|---------------|-------------|----------|
+| Innovación tecnológica llamativa (traducción, notificaciones, IA, cámara).| Creciente mercado de wearables y realidad aumentada.|
+| Diferenciación en el mercado frente a gafas convencionales.| Interés en dispositivos de traducción y conectividad.|
+| Personalización estética (colores, modelos, estilos).| Posible integración con asistentes virtuales existentes (Google, Alexa, etc.).|
+| Potencial para aplicaciones en turismo, educación y salud.| Tendencia hacia moda tecnológica (fashion tech).|
