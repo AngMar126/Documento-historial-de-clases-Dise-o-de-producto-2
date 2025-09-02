@@ -11,15 +11,27 @@ Existen tres tipos de proyecto:
   
 Quienes están involucrados activamente en el proyecto se denominan **stakeholders**, sin embargo pueden generar positivamente o negativamente en el desarrollo del proyecto y sus resultados.
 
-Para saber las necesidades, deseos y expectativas que se tienen en un proyecto, se requiere recopilar los **requerimientos**, estos mismos nos permiten saber si un proyecto es viable o no. También nos ayudan a definir y manejar las expectativas del cliente. Estos incluyen: <ins>necesidades y expectativas, cuantificadas y documentadas, de
-los stakeholder</ins>
+Para saber las necesidades, deseos y expectativas que se tienen en un proyecto, se requiere recopilar los **requerimientos**, estos mismos nos permiten saber si un proyecto es viable o no. También nos ayudan a definir y manejar las expectativas del cliente. Estos incluyen: <ins>necesidades y expectativas, cuantificadas y documentadas, de los stakeholder</ins>
+
+Estos se dividen en dos tipos: 
+  - **Requerimientos funcionales:** Relacionados con el comportamiento del Producto del Proyecto (Funcionalidad, reglas, interfaces, informes a producir, información historica).
+  - **Requerimientos no-funcionales:** Relacionados con los atributos o propiedades del Producto del Proyecto (Desempeño, Cualidades y Restricciones).
 
 El **alcance del proyecto** es una descripción de las características del Producto para cuya creación se emprendió el Proyecto y debe proveer suficiente detalle para soportar la planeación del alcance, su resultado es la **declaración de alcance**.
 
-El **desarrollo de un nuevo producto** consiste en un proceso completo que se dedica a crear y llevar un nuevo producto al mercado. Para ello, se deben llevar a cabo dos pasos necesarios:
+El **desarrollo de un nuevo producto** consiste en un proceso completo que se dedica a crear y llevar un nuevo producto al mercado. Para ello, se deben llevar a cabo dos etapas necesarias:
   - Ingeniería de producto.
-  - Análisis de mercado.<br>
-
+  - Análisis de mercado.
+    
+También para que este desarrollo sea eficaz, se requieren de los siguientes pasos:
+  1. **Generación de productos** (Lluvia de ideas).
+  2. **Filtrado de la idea eliminación de conceptos que no encajan** (Preguntas clave: ¿El mercado objetivo se beneficiará del producto?, ¿Es técnicamente viable fabricar este producto?, ¿Generará beneficios el producto?).
+  3. **Desarrollo del concepto y prueba** (Estudio de mercado).
+  4. **Análisis de Negocios** (Estimar precio de venta, volúmenes de venta y beneficios).
+  5. **Test de mercado y test Beta** (Prototipo físico y pruebas con posibles ajustes).
+  6. **Implementación Técnica** (Iniciación del nuevo proyecto).
+  7. **Comercialización** (Lanzamiento del producto).
+     
 ### Procesos básicos de planeación
 <p align="center">
 <img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/9e09dcf8-bfd1-4c87-acdf-802ded83b38d" />
@@ -28,4 +40,9 @@ El **desarrollo de un nuevo producto** consiste en un proceso completo que se de
 ### Pasos a seguir de un producto en un proyecto
 <p align="center">  
 <img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/0c991a94-f2bb-4c76-8331-b72fa6aa324b" />
+</p>
+
+### Desarrollo de un proyecto desde el concepto al mercado
+<p align="center"> 
+<img width="500" height="270" alt="imagen" src="https://github.com/user-attachments/assets/c203bec8-ddfe-4758-93e3-02c2700380bc" />
 </p>
