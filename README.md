@@ -213,29 +213,44 @@ Gracias a la herramienta Google Forms, la cual permitió la realización de las 
 ### Selección de ideas
 Sin embargo, para escoger dos ideas, para que alguno sea el candidato a producto a realizar. Se tomaron en cuenta las estadisticas correspondientes a preferencia de cada idea, midiendo el interés de la población en cada producto.
 
-**KeyFinder Pro** (Buscador de objetos personales). &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**MediCare+** (Dispensador de medicamentos).
+**KeyFinder Pro** (Buscador de objetos personales). 
 
-<img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/97c4493e-57b2-45dd-a074-0af82b8575e1" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/97c4493e-57b2-45dd-a074-0af82b8575e1" />
+
+**MediCare+** (Dispensador de medicamentos).
+
 <img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/d27457fe-eb56-486d-9c1b-8d42c47a17a6" />
 
-**CoolAir Auto** (Ventilador automático por temperatura). &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SunTrack** (Panel solar con seguidor).
+**CoolAir Auto** (Ventilador automático por temperatura). 
 
-<img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/01e82f4f-96b8-4298-909c-a1e08b6df737" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/01e82f4f-96b8-4298-909c-a1e08b6df737" />
+
+**SunTrack** (Panel solar con seguidor).
+
 <img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/6879fab0-6267-43e9-91ca-2f6202e2b6a1" />
 
-**JumpStart 12V** (Batería portátil de arranque). &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**SmartEyes** (Gafas inteligentes).
+**JumpStart 12V** (Batería portátil de arranque).
 
-<img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/1c135c83-458a-4204-8492-db903050290f" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/1c135c83-458a-4204-8492-db903050290f" />
+
+**SmartEyes** (Gafas inteligentes).
+
 <img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/6cf67f34-ca31-4322-9c18-8506d8c21229" />
 
-**GoodClothing** (Closet inteligente con gestión de prendas). &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**NiceLife** (Sistema de asistencia para personas mayores).
+**GoodClothing** (Closet inteligente con gestión de prendas). 
 
-<img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/26ff2428-8d98-4386-8b15-5a7f0cb359e1" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/26ff2428-8d98-4386-8b15-5a7f0cb359e1" />
+
+**NiceLife** (Sistema de asistencia para personas mayores).
+
 <img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/b90850a8-b648-40c2-9e63-9b64dadc81a9" />
 
-**Reciclajeficiente** (Sistema de reciclaje inteligente). &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**HappyPlants** (Invernadero autónomo con control de clima).
+**Reciclajeficiente** (Sistema de reciclaje inteligente).
 
-<img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/b9545de3-e061-408b-acc3-3753ef9644a5" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/b9545de3-e061-408b-acc3-3753ef9644a5" />
+
+**HappyPlants** (Invernadero autónomo con control de clima).
+
 <img width="350" height="300" alt="imagen" src="https://github.com/user-attachments/assets/0c2fd2c4-37e7-43f3-9d85-dd1021c2d8a0" />
 
 Reuniendo todas las estadisticas, podemos realizar un listado de las ideas entre mayor y menor preferencia que sería el siguiente:
