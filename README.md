@@ -93,8 +93,37 @@ Las preguntas para cada propuesta fueron las siguientes:
 
 <img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/c7957d40-046e-4e29-9945-9bb4b381b8e1" />
 <img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/0cf17ef1-1627-42b7-aef9-c2defdf2e1f8" />
-<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/a3a0241a-92e9-406a-b130-6ddab2a97a9c" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/a3a0241a-92e9-406a-b130-6ddab2a97a9c" /><br><br>
 
+**SmartEyes** (Gafas inteligentes).
+
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/f8cb3892-2675-47da-a41f-564687c29960" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/476f6851-d67b-4028-b2c3-bbfe0fde3ef1" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/9d5c5bd0-9d78-4b89-a88a-f5b89dcb2855" /><br><br>
+
+**GoodClothing** (Closet inteligente con gestión de prendas).
+
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/3dc776ea-48e2-427e-9d44-f8b6414c62c2" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/7009ea87-3730-4f2e-bfac-e8fc6f91980a" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/ead144b5-3d49-4f15-bfc3-0b66ab80d7b8" /><br><br>
+
+**NiceLife** (Sistema de asistencia para personas mayores).
+
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/104233a8-2b91-47f0-8aa0-756b306f0f6f" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/0ad30fab-d28f-482d-be24-d8c4da843e68" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/2f2971b6-7f62-4c10-9a23-07d8eba468cf" /><br><br>
+
+**Reciclajeficiente** (Sistema de reciclaje inteligente).
+
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/5b4ed696-8611-4b48-90af-5ce251168bf3" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/8d9df07c-07ae-439c-a648-a54e2d5aa061" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/568173a6-2a66-47f4-a584-687ad763c2d5" /><br><br>
+
+**HappyPlants** (Invernadero autónomo con control de clima).
+
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/9e256eb4-25a6-46f2-876f-f4bb11c3fb53" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/4e26cb43-b8e1-4663-817c-42d5ef1b4401" />
+<img width="250" height="200" alt="imagen" src="https://github.com/user-attachments/assets/cc59d73b-637c-4a7e-a56e-23015dcb5b84" /><br><br>
 
 
 
