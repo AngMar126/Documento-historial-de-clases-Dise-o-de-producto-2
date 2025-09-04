@@ -357,3 +357,26 @@ Gracias a este análisis podemos concluir que el proyecto más viable a corto pl
   - Tiene fuerte impacto social y ambiental.
   - Es escalable desde un prototipo pequeño hasta un modelo industrial.
   - Más fácil de justificar en convocatorias de innovación sostenible.
+
+### Organizar planeación de actividades a realizar para el proyecto
+Con la propuesta ya escogida, se procede a crear un cronograma de actividades con la aplicación **Planner** de Microsoft, el cual, nos permite darle un orden a las tareas, incluyendo el calendario, importancia de la actividad e indicar si se esta desarrollando o ya se cumplió.
+<p align="center">
+<img width="450" height="400" alt="imagen" src="https://github.com/user-attachments/assets/f293522e-6f12-448e-8993-25e1ca8e709c" />
+</p>
+
+Las actividades propuestas fueron las siguientes:
+  1. Planteamiento del problema.
+  2. Requerimientos.
+  3. Bocetos.
+  4. Diseño esquemático.
+  5. Simulación.
+  6. Compra de materiales.
+  7. Pruebas circuito.
+  8. Diseño PCB.
+  9. Impresión de PCB.
+  10. Ensamble.
+  11. Construcción con circuito.
+  12. Pruebas finales.
+  13. Entrega.
+
+### Tematica dictada en Clase:
