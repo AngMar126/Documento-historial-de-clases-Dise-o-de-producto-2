@@ -380,3 +380,12 @@ Las actividades propuestas fueron las siguientes:
   13. Entrega.
 
 ### Tematica dictada en Clase:
+Se hablo acerca de la teoría del valor ganado (Earned Value Management (EVM)), la cual contiene la línea base de tiempo, la línea base de costos, además de tener en cuenta el alcance; esta teoría permite medir el rendimiento y el progreso de un proyecto, importante cuando se debe de tomar decisiones correctivas cuando se detectan desviaciones en el proceso. Este contiene:
+
+  - **Valor Planificado (PV):** Valor del trabajo que se esperaba haber completado.
+  - **Valor Ganado (EV):** Valor del trabajo completado hasta la fecha.
+  - **Costo Real (AC):** El costo real incurrido para completar el trabajo hasta la fecha.
+
+También se hablo de que se debe de tener en cuenta que la calidad de un proyecto núnca se negocia, pero el tiempo y el costo si.
+
+
