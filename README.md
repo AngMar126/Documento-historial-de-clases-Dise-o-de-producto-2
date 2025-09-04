@@ -346,7 +346,14 @@ Se socializaron los requerimientos y con ellos se procedió a realizar un análi
 
 | Fortalezas | Oportunidades | Debilidades | Amenazas |
 |------------|---------------|-------------|----------|
-| Innovación tecnológica llamativa (traducción, notificaciones, IA, cámara).| Creciente mercado de wearables y realidad aumentada.|
-| Diferenciación en el mercado frente a gafas convencionales.| Interés en dispositivos de traducción y conectividad.|
-| Personalización estética (colores, modelos, estilos).| Posible integración con asistentes virtuales existentes (Google, Alexa, etc.).|
-| Potencial para aplicaciones en turismo, educación y salud.| Tendencia hacia moda tecnológica (fashion tech).|
+| Innovación tecnológica llamativa (traducción, notificaciones, IA, cámara).| Creciente mercado de wearables y realidad aumentada.| Complejidad técnica muy alta (miniaturización, batería, conectividad, óptica AR).| Alta expectativa del usuario (puede compararse con grandes marcas).|
+| Diferenciación en el mercado frente a gafas convencionales.| Interés en dispositivos de traducción y conectividad.| Requiere inversión en hardware especializado (microproyector, ópticas, procesador).| Riesgos de privacidad (cámara en espacios públicos).|
+| Personalización estética (colores, modelos, estilos).| Posible integración con asistentes virtuales existentes (Google, Alexa, etc.).| Alto costo de producción → difícil de hacer accesible en prototipo.| Regulaciones en algunos países sobre uso de gafas con cámara.|
+| Potencial para aplicaciones en turismo, educación y salud.| Tendencia hacia moda tecnológica (fashion tech).| Competencia fuerte (Google Glass, Meta, Xiaomi, etc.).| Posible rechazo si el diseño no es estético o es muy pesado.|
+
+Gracias a este análisis podemos concluir que el proyecto más viable a corto plazo es el de **Reciclajeficiente (Sistema de reciclaje inteligente)** por las presentes razones:
+
+  - Usa tecnología alcanzable (sensores accesibles, microcontroladores económicos).
+  - Tiene fuerte impacto social y ambiental.
+  - Es escalable desde un prototipo pequeño hasta un modelo industrial.
+  - Más fácil de justificar en convocatorias de innovación sostenible.
