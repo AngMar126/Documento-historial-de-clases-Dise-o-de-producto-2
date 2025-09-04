@@ -388,4 +388,8 @@ Se hablo acerca de la teoría del valor ganado (Earned Value Management (EVM)), 
 
 También se hablo de que se debe de tener en cuenta que la calidad de un proyecto núnca se negocia, pero el tiempo y el costo si.
 
+## Capítulo 5:
+Se realizó un boceto donde se puede visualizar la arquitectura física que puede tener el proyecto
+<img width="450" height="400" alt="imagen" src="https://github.com/user-attachments/assets/4ead1926-3fb9-4445-a08e-29b3cc95c4d3" />
+
 
