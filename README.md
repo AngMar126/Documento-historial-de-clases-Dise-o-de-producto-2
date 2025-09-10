@@ -397,7 +397,7 @@ Se realizó un boceto donde se puede visualizar la arquitectura física que pued
 
 Y un diseño en 3D donde se ubicaria la ESPCAM para el análisis con visión inteligente del objeto desechado.
 
-En thinkercad:
+En tinkercad:
 
 <p align="center">
 <img width="657" height="469" alt="imagen" src="https://github.com/user-attachments/assets/cba2fa05-0bce-4fdc-9203-02143f72cc50" />
