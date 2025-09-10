@@ -392,12 +392,40 @@ También se hablo de que se debe de tener en cuenta que la calidad de un proyect
 Se realizó un boceto donde se puede visualizar la arquitectura física que puede tener el proyecto:
 
 <p align="center">
-<img width="450" height="400" alt="imagen" src="https://github.com/user-attachments/assets/4ead1926-3fb9-4445-a08e-29b3cc95c4d3" />
+<img width="550" height="500" alt="imagen" src="https://github.com/user-attachments/assets/4ead1926-3fb9-4445-a08e-29b3cc95c4d3" />
+</p>
+
+Y un diseño en 3D donde se ubicaria la ESPCAM para el análisis con visión inteligente del objeto desechado.
+
+En thinkercad:
+
+<p align="center">
+<img width="657" height="469" alt="imagen" src="https://github.com/user-attachments/assets/cba2fa05-0bce-4fdc-9203-02143f72cc50" />
+</p>
+
+Señalamiento de piezas:
+
+<p align="center">
+<img width="707" height="524" alt="imagen" src="https://github.com/user-attachments/assets/0466b04f-9f29-4129-8843-e9c7c18ff2ba" />
+</p>
+
+También el diseño de una banda transportadora para la debida clasificación de los productos, se debió a la inspiración de el siguiente video realizado por "Construye Fácil", titulado "Como hacer una Cinta Transportadora (Planos PDF)" y subido en la plataforma de Youtube.
+
+Enlace al video: https://www.youtube.com/watch?v=PjL9drjZAQU
+
+Imagen de referencia:
+<p align="center">
+<img width="886" height="430" alt="imagen" src="https://github.com/user-attachments/assets/ca9df184-0eec-42c8-9f55-5421a60d5a65" />
 </p>
 
 Desde aquí se comenzó a planear el diseño de arquitectura que va a tener el proyecto, teniendo en cuenta los capítulos anteriores del presente documento. Para ello se realizó una lista en el software Microsoft Excel con los componentes necesarios, los proveedores, sus precios y sus datasheet (para luego realizar la suma de potencias que se necesiten en cada componente). El documento se puede visualizar aqui:
 
 [Tabla de productos y proveedores.xlsx](https://github.com/user-attachments/files/22265381/Tabla.de.productos.y.proveedores.xlsx)
 
+La vista a la tabla es de la siguiente manera: 
+
+<p align="center">
+<img width="1349" height="280" alt="imagen" src="https://github.com/user-attachments/assets/31083202-6fe5-401c-afb9-4193039d1e7a" />
+</p>
 
 
