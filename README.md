@@ -454,14 +454,17 @@ Para esta propuesta se usaron los materiales a continuación:
   - Módulo ESP32.
     
 El esquemático propuesto fue el siguiente.
+
 <p align="center">
 <img width="801" height="517" alt="imagen" src="https://github.com/user-attachments/assets/7e6c9bdd-69c5-46f6-9471-1ca40f6d0467" />
 </p>
 
 El código que se programó fue "CODIGO ONOFF SISTEMA.txt" el cual se encuentra en el directorio del repositorio tambien.
+
 [CODIGO 2 ONOFF SISTEMA.txt](https://github.com/user-attachments/files/22267302/CODIGO.2.ONOFF.SISTEMA.txt)
 
 Y si funcionamiento se puede observar así:
+
 ![ONOFF-ESP32-BUTTON(1)](https://github.com/user-attachments/assets/4ef403bd-88c3-4f10-914a-e57562070b5e)
 
 
