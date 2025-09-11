@@ -525,3 +525,5 @@ También se puede usar un amplificador operacional para comparar cada una de las
 <img width="670" height="391" alt="imagen" src="https://github.com/user-attachments/assets/f44badd1-9d53-4753-8f03-40d3e29d749b" />
 </p>
 
+## Capítulo 9:
+En esta clase explicó la importancia de usar el BMS (Sistema de Gestión de Baterias), el cual, es un sistema que permite gestionar la carga de una bateria recargable de litio.
