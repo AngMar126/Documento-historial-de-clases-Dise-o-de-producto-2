@@ -559,3 +559,10 @@ Se comenzó a realizar el diseño de la PCB del circuito de la caneca inteligent
   - PCB siempre es de 1,6 mm para cuando se diseñe en 3D (esto al momento de realizar una caja protectora para la PCB).
   - Diseñar con 4 capas la PCB.
   - Separar ruidos con pistas truehall conectadas a tierra.
+
+También se realizó una tabla teniendo en cuenta las especificaciones electrónicas de cada componente a usar, como los voltajes, corrientes y potencias.
+
+<p align="center">
+<img width="868" height="286" alt="imagen" src="https://github.com/user-attachments/assets/b837a7cc-fc10-4485-8a2c-0acfe93f692d" />
+</p>
+
