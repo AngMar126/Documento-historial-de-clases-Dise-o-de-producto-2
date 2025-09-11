@@ -533,8 +533,29 @@ Por último se explico una de las razones del uso del condensador en un sistema 
 
 ## Capítulo 9:
 En esta clase explicó la importancia de usar el BMS (Sistema de Gestión de Baterias), el cual, es un sistema que permite gestionar la carga de una bateria recargable de litio.
-Sin embargo, introducimos otro uso del MOSFET canal P, y es el de permitir el switcheo entre alimentacion externa y bateria, permitiendo elegir que tipo de fuente se va a usar para alimentar al sistema automáticamente. Esto sin necesidad de realizar cortes o el usar relés.
+Sin embargo, introducimos otro uso del MOSFET canal P, y es el de permitir el switcheo entre alimentacion externa y bateria, permitiendo elegir que tipo de fuente se va a usar para alimentar al sistema automáticamente. Esto sin necesidad de realizar cortes o el usar relés. El siguiente esquemático muestra lo anteriormente mencionado.
 
 <p align="center">
 <img width="372" height="216" alt="imagen" src="https://github.com/user-attachments/assets/1fe03859-95b1-4d94-8053-a02fed153c7a" />
 </p>
+
+Adicionalmente, es preferible incluir en el esquemático del switcheo un circuito BMS, realizando mejor las funcionalidades de cada uno de los circuitos para el cuidado de la bateria y del sistema.
+
+<p align="center">
+<img width="371" height="127" alt="imagen" src="https://github.com/user-attachments/assets/9593892e-0994-4e4e-b7c5-2ad3fe721093" />
+</p>
+
+**Recordemos:** 
+  - **El BMS** protege y gestiona la batería.
+  - **El switcheo con MOSFET** asegura una transición limpia entre batería y fuente externa.
+
+Los circuitos mencionados en este y en los anteriores capítulos (incluyendo las actividades en clase con los pulsadores), son escenciales al momento de diseñar el proyecto de la caneca inteligente, no solamente porque es un requisito, sino también es una forma de protección y alimentación necesaria para el sistema del CPU de la ESP32 que vamos a utilizar.
+
+## Capítulo 10:
+Se comenzó a realizar el diseño de la PCB del circuito de la caneca inteligente, con las siguientes recomendaciones:
+  - Debajo de la antena de la ESP32 debe tener un espacio en la PCB sin tierras.
+  - Si se conecta un chip o un modulo, el pin VCC debe tener si o si un capacitor de 100nF o de 0.1uF.
+  - Mirar en los datasheet de los chip que ruteo se recomienda en las PCB.
+  - PCB siempre es de 1,6 mm para cuando se diseñe en 3D (esto al momento de realizar una caja protectora para la PCB).
+  - Diseñar con 4 capas la PCB.
+  - Separar ruidos con pistas truehall conectadas a tierra.
