@@ -566,3 +566,10 @@ También se realizó una tabla teniendo en cuenta las especificaciones electrón
 <img width="868" height="286" alt="imagen" src="https://github.com/user-attachments/assets/b837a7cc-fc10-4485-8a2c-0acfe93f692d" />
 </p>
 
+El circuito realizado para la implementación entre componentes y la ESP32-WROOM es el siguiente.
+
+<p align="center">
+<img width="658" height="542" alt="imagen" src="https://github.com/user-attachments/assets/a795b70c-2ff2-4886-ba52-b2ebd21e296f" />
+</p>
+
+
