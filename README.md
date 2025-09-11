@@ -525,5 +525,16 @@ También se puede usar un amplificador operacional para comparar cada una de las
 <img width="670" height="391" alt="imagen" src="https://github.com/user-attachments/assets/f44badd1-9d53-4753-8f03-40d3e29d749b" />
 </p>
 
+Por último se explico una de las razones del uso del condensador en un sistema de carga, ya que, por este mismo componente se generar picos de voltaje constantes como se muestra en la gráfica, cuando el power supply del sistema llego a la máxima carga, esto no afecta al sistema en sí, pero si es algo para tener en cuenta. 
+
+<p align="center">
+<img width="525" height="310" alt="imagen" src="https://github.com/user-attachments/assets/981a2cc1-ce46-40a7-b390-e24200d5a7c4" />
+</p>
+
 ## Capítulo 9:
 En esta clase explicó la importancia de usar el BMS (Sistema de Gestión de Baterias), el cual, es un sistema que permite gestionar la carga de una bateria recargable de litio.
+Sin embargo, introducimos otro uso del MOSFET canal P, y es el de permitir el switcheo entre alimentacion externa y bateria, permitiendo elegir que tipo de fuente se va a usar para alimentar al sistema automáticamente. Esto sin necesidad de realizar cortes o el usar relés.
+
+<p align="center">
+<img width="372" height="216" alt="imagen" src="https://github.com/user-attachments/assets/1fe03859-95b1-4d94-8053-a02fed153c7a" />
+</p>
