@@ -572,4 +572,9 @@ El circuito realizado para la implementación entre componentes y la ESP32-WROOM
 <img width="658" height="542" alt="imagen" src="https://github.com/user-attachments/assets/a795b70c-2ff2-4886-ba52-b2ebd21e296f" />
 </p>
 
+Las fuentes que se van a usar son de 3.3 V y de 5 V, los cuales se van a obtener de una fuente externa de 12 V en un terminal block, estos voltajes alimentaran el resto del sistema.
+
+<p align="center">
+<img width="395" height="348" alt="imagen" src="https://github.com/user-attachments/assets/1f58336c-7f42-49b6-936b-662de0ef0cd4" />
+</p>
 
