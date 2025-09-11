@@ -503,3 +503,25 @@ Y su funcionamiento se puede observar así:
 ![Apagado manteniendo pulsado 2 seg](https://github.com/user-attachments/assets/f7de2fb7-441e-466b-be47-ef7be4cc9369)
 
 En este caso, el circuito contiene un conjunto de tres sensores que permiten controlar varias señales (D12 de la ESP32, el pulsador y el transistor), forzando al MOSFET a GND sin que se retroalimenten entre sí. Este permite realizar un mejor control por software mediante D12 y D4 del ESP32, sin que se vea afectado el módulo.
+
+## Capítulo 8:
+Se propuso un problema a resolver en clase, y es el realizar un circuito que permita obtener 5V de una fuente 12V sin usar algún regulador de voltaje.
+
+Se explicó el porque no se puede usar un divisor de voltaje, ya que, la potencia puede disminuir para la carga.
+
+<p align="center">
+<img width="629" height="546" alt="imagen" src="https://github.com/user-attachments/assets/9f5f421f-e88a-43ec-8852-41f9bedcd9d9" />
+</p>
+
+La forma preferida de cumplir con ese objetivo es hacer uso de la combinación entre un transistor NPN, una resitencia 150 Ohm y un diodo Zener de 5V; se usa el transistor para evitar que la impedancia disminuya la potencia.
+
+<p align="center">
+<img width="699" height="378" alt="imagen" src="https://github.com/user-attachments/assets/2b3fb5f8-3bf3-486f-887f-61d7d2330c1b" />
+</p>
+
+También se puede usar un amplificador operacional para comparar cada una de las señales.
+
+<p align="center">
+<img width="670" height="391" alt="imagen" src="https://github.com/user-attachments/assets/f44badd1-9d53-4753-8f03-40d3e29d749b" />
+</p>
+
