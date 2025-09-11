@@ -1,4 +1,6 @@
 # Documento historial de clases Diseño de producto 2
+Realizado por: Angie Martínez y Wilson Rodriguez.
+
 ## Capítulo 1:
 Se visualizó el proceso de definir, diseñar, y producir un producto final, además de tener en cuenta definiciones como que es un proyecto, un stakeholder, un alcance del proyecto, los requerimientos, como es un proceso de negocio, etc. 
 ### ¿Qué es un proyecto?
@@ -441,6 +443,7 @@ Por lo cual el proceso de funcionamiento sería el siguiente.
 </p>
 
 ## Capítulo 6:
+### Actividad en clase 2:
 En la **Actividad en clase 1** realizada en el **Capítulo 3**, se editó el código y el esquemático del circuito, para que su nuevo objetivo fuera el de presionar un pulsador, y que luego en 10 segundos se apague el sistema por completo, aun estando conectado a la fuente.
 
 Para esta propuesta se usaron los materiales a continuación:
@@ -463,8 +466,40 @@ El código que se programó fue "CODIGO ONOFF SISTEMA.txt" el cual se encuentra 
 
 [CODIGO 2 ONOFF SISTEMA.txt](https://github.com/user-attachments/files/22267302/CODIGO.2.ONOFF.SISTEMA.txt)
 
-Y si funcionamiento se puede observar así:
+Y su funcionamiento se puede observar así:
 
 ![ONOFF-ESP32-BUTTON(1)](https://github.com/user-attachments/assets/4ef403bd-88c3-4f10-914a-e57562070b5e)
 
+Esta actividad nos demuestra un uso útil del MOSFET canal P, ya que, es el principal componente encargado de conectar o desconectar la alimentación de 5 V hacia el VIN del ESP32. Mientras que el controla su activación es el transistor NPN.
 
+También se encuentran componentes con funcionamientos escenciales, como por ejemplo la resistencia de 10K conectada al Source del MOSFET, que funciona como resistencia pull-up, manteniendo esta compuerta en nivel alto por defecto. Mientras que la otra resistencia de 10K en nodo con la base del transistor NPN, funciona como resistencia pull-down, que asegura que la base se encuentre en 0V cuando la ESP32 no conduce.
+
+## Capítulo 7:
+### Actividad en clase 3:
+En la actividad realizada en el capítulo anterior, se realizó una nueva propuesta, realizar un circuito y un código, que permitan que el sistema se apague, cuando se presione durante 2 segundos un pulsador.
+
+Para esta propuesta se usaron los materiales a continuación:
+  - Fuente externa de 5V.
+  - 3 x Resistencias 10 KOhm.
+  - 1 x Resistencia 220 Ohm.
+  - Pulsador.
+  - Transistor NPN 2N3904.
+  - 4 x Diodo 1N4007.
+  - MOSFET CANAL P IRF9530.
+  - Módulo ESP32.
+    
+El esquemático propuesto fue el siguiente.
+
+<p align="center">
+<img width="913" height="576" alt="imagen" src="https://github.com/user-attachments/assets/62139fa6-c541-49b0-9ae6-a644cb666200" />
+</p>
+
+El código que se programó fue "Encendido y apagado port 2 seg con pulsador.tx" el cual se encuentra en el directorio del repositorio tambien.
+
+[Encendido y apagado port 2 seg con pulsador.txt](https://github.com/user-attachments/files/22267829/Encendido.y.apagado.port.2.seg.con.pulsador.txt)
+
+Y su funcionamiento se puede observar así:
+
+![Apagado manteniendo pulsado 2 seg](https://github.com/user-attachments/assets/f7de2fb7-441e-466b-be47-ef7be4cc9369)
+
+En este caso, el circuito contiene un conjunto de tres sensores que permiten controlar varias señales (D12 de la ESP32, el pulsador y el transistor), forzando al MOSFET a GND sin que se retroalimenten entre sí. Este permite realizar un mejor control por software mediante D12 y D4 del ESP32, sin que se vea afectado el módulo.
