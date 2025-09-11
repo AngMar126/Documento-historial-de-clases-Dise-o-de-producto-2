@@ -420,12 +420,16 @@ Imagen de referencia:
 
 Desde aquí se comenzó a planear el diseño de arquitectura que va a tener el proyecto, teniendo en cuenta los capítulos anteriores del presente documento. Para ello se realizó una lista en el software Microsoft Excel con los componentes necesarios, los proveedores, sus precios y sus datasheet (para luego realizar la suma de potencias que se necesiten en cada componente). El documento se puede visualizar aqui:
 
-[Tabla de productos y proveedores.xlsx](https://github.com/user-attachments/files/22265381/Tabla.de.productos.y.proveedores.xlsx)
+[Tabla de productos y proveedores.xlsx](https://github.com/user-attachments/files/22265642/Tabla.de.productos.y.proveedores.xlsx)
 
 La vista a la tabla es de la siguiente manera: 
 
 <p align="center">
-<img width="1349" height="280" alt="imagen" src="https://github.com/user-attachments/assets/31083202-6fe5-401c-afb9-4193039d1e7a" />
+<img width="1351" height="304" alt="imagen" src="https://github.com/user-attachments/assets/5cf31875-1274-48ef-b3f5-2586d6c55225" />
 </p>
+
+
+
+## Capítulo 6:
 
 
