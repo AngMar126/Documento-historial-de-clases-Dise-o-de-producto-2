@@ -428,7 +428,17 @@ La vista a la tabla es de la siguiente manera:
 <img width="1352" height="303" alt="imagen" src="https://github.com/user-attachments/assets/b471325c-d4c9-4406-bb8a-0a9e1e162829" />
 </p>
 
+Con esto en mente, procedemos a realizar el diagrama de bloques del funcionamiento con los pasos a continuación.
 
+<p align="center">
+<img width="986" height="542" alt="imagen" src="https://github.com/user-attachments/assets/78e0d983-abd7-4e6f-965d-b7c36082bfb4" />
+</p>
+
+Por lo cual el proceso de funcionamiento sería el siguiente.
+
+<p align="center">
+<img width="885" height="365" alt="imagen" src="https://github.com/user-attachments/assets/590283d4-9b4e-4a07-a677-e9b6b3f319f7" />
+</p>
 
 ## Capítulo 6:
 
