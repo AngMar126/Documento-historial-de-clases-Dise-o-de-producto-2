@@ -578,3 +578,9 @@ Las fuentes que se van a usar son de 3.3 V y de 5 V, los cuales se van a obtener
 <img width="395" height="348" alt="imagen" src="https://github.com/user-attachments/assets/1f58336c-7f42-49b6-936b-662de0ef0cd4" />
 </p>
 
+El circuito con su alimentación seria el siguiente:
+
+<p align="center">
+<img width="700" height="360" alt="imagen" src="https://github.com/user-attachments/assets/3d6d866a-234f-4827-9920-f9ee382bc933" />
+</p>
+
