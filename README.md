@@ -441,5 +441,7 @@ Por lo cual el proceso de funcionamiento sería el siguiente.
 </p>
 
 ## Capítulo 6:
+En la **Actividad en clase 1** realizada en el **Capítulo 3**, se editó el código y el esquemático del circuito, para que su nuevo objetivo fuera el de presionar un pulsador, y que luego en 10 segundos se apague el sistema por completo, aun estando conectado a la fuente.
+
 
 
