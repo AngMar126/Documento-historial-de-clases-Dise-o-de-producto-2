@@ -1,0 +1,52 @@
+extern "C" void app_main() ;
+
+#include <stdio.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "driver/gpio.h"
+#include "esp_log.h"
+#include "sdkconfig.h"
+
+#define LED_PIN GPIO_NUM_2   // LED en el pin 2 (en muchas placas es el LED integrado)
+#define PINOFF GPIO_NUM_4    // Pin que indica cuando el sistema debe apagarse
+#define BUTTONOFF GPIO_NUM_12 //Botón de apagado
+
+void app_main(void)
+{
+    // Configurar pin como salida
+    gpio_reset_pin(LED_PIN);
+    gpio_set_direction(LED_PIN, GPIO_MODE_OUTPUT);
+    gpio_set_direction(PINOFF, GPIO_MODE_OUTPUT);
+    gpio_set_level(PINOFF, 1);   // Definir en 1 el pin 4
+    gpio_set_direction(BUTTONOFF, GPIO_MODE_INPUT);
+    gpio_set_pull_mode(BUTTONOFF, GPIO_PULLUP_ONLY); // Pulsador a GND
+    //uint32_t contador = 0;
+    
+    while (1) {
+
+        // Leer estado del botón
+        int btnState = gpio_get_level(BUTTONOFF);
+
+        if (btnState == 0) { // Pulsador presionado
+            int tiempo = 0;
+            while (gpio_get_level(BUTTONOFF) == 0) {
+                vTaskDelay(100 / portTICK_PERIOD_MS);
+                tiempo += 100;
+                if (tiempo >= 1000) {   // 2 segundos presionado
+                    gpio_set_level(PINOFF, 0); // Apagar sistema
+                    gpio_set_level(LED_PIN, 0);
+                    vTaskDelay(1000 / portTICK_PERIOD_MS);
+                    esp_restart();  // Reinicia ESP32 al apagarse
+                }
+            }
+
+            // Si fue un toque corto (<1s) → encender LED
+            if (tiempo < 1000) {
+                gpio_set_level(LED_PIN, 1);
+            }
+        }
+
+        // vTaskDelay(50 / portTICK_PERIOD_MS);
+    }
+}
+    
