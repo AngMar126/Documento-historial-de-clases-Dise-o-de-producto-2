@@ -578,6 +578,12 @@ Las fuentes que se van a usar son de 3.3 V y de 5 V, los cuales se van a obtener
 <img width="568" height="476" alt="imagen" src="https://github.com/user-attachments/assets/4be4e521-750f-4ffe-9837-d9cb3af19ce5" />
 </p>
 
+También agregamos el esquemático del circuito correspondiente a la **Actividad 3**, el cual, usaremos para el encendido y apagado del sistema, este encendera la fuente de 5v y así encender el de 3v, esto nos permitirá encender el procesador ESP, para luego, desde este componente, haremos el respectivo control y programa para hacer que el pulsador sea el mecanismo principal de activación del sistema. En la siguiente captura, el pulsador se mostrará como un header de 2 pines, por lo que nos permitirá conectar el botón de forma externa a la PCB del circuito.
+
+<p align="center">
+<img width="542" height="425" alt="imagen" src="https://github.com/user-attachments/assets/1dc896f0-372a-4db2-ba24-72242cc567ca" />
+</p>
+
 El circuito con su alimentación seria el siguiente:
 
 <p align="center">
