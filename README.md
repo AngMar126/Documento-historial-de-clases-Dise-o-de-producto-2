@@ -422,12 +422,12 @@ Imagen de referencia:
 
 Desde aquí se comenzó a planear el diseño de arquitectura que va a tener el proyecto, teniendo en cuenta los capítulos anteriores del presente documento. Para ello se realizó una lista en el software Microsoft Excel con los componentes necesarios, los proveedores, sus precios y sus datasheet (para luego realizar la suma de potencias que se necesiten en cada componente). El documento se puede visualizar aqui:
 
-[Tabla de productos y proveedores.xlsx](https://github.com/user-attachments/files/22266065/Tabla.de.productos.y.proveedores.xlsx)
+[Tabla de productos y proveedores.xlsx](https://github.com/user-attachments/files/22376166/Tabla.de.productos.y.proveedores.xlsx)
 
 La vista a la tabla es de la siguiente manera: 
 
 <p align="center">
-<img width="1352" height="303" alt="imagen" src="https://github.com/user-attachments/assets/b471325c-d4c9-4406-bb8a-0a9e1e162829" />
+<img width="1345" height="306" alt="imagen" src="https://github.com/user-attachments/assets/bfaf4adc-5c92-4bc6-8f70-6eb017232c54" />
 </p>
 
 Con esto en mente, procedemos a realizar el diagrama de bloques del funcionamiento con los pasos a continuación.
