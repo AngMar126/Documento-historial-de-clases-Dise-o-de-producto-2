@@ -587,6 +587,6 @@ También agregamos el esquemático del circuito correspondiente a la **Actividad
 El circuito con su alimentación seria el siguiente:
 
 <p align="center">
-<img width="700" height="360" alt="imagen" src="https://github.com/user-attachments/assets/3d6d866a-234f-4827-9920-f9ee382bc933" />
+<img width="885" height="532" alt="imagen" src="https://github.com/user-attachments/assets/95849f62-42a2-43d0-a596-81a2d848bc2a" />
 </p>
 
