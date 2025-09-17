@@ -491,7 +491,7 @@ Para esta propuesta se usaron los materiales a continuación:
 El esquemático propuesto fue el siguiente.
 
 <p align="center">
-<img width="913" height="576" alt="imagen" src="https://github.com/user-attachments/assets/62139fa6-c541-49b0-9ae6-a644cb666200" />
+<img width="1020" height="581" alt="imagen" src="https://github.com/user-attachments/assets/f37a0ae8-381a-4dc1-a7f5-f6483ca18c1c" />
 </p>
 
 El código que se programó fue "Encendido y apagado port 2 seg con pulsador.tx" el cual se encuentra en el directorio del repositorio tambien.
