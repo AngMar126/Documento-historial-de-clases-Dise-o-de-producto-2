@@ -584,9 +584,20 @@ También agregamos el esquemático del circuito correspondiente a la **Actividad
 <img width="477" height="358" alt="imagen" src="https://github.com/user-attachments/assets/83a97319-b426-4edf-9cae-e35f6c9e10c5" />
 </p>
 
-El circuito con su alimentación seria el siguiente:
+El circuito con su alimentación y pulsador seria el siguiente:
 
 <p align="center">
 <img width="885" height="532" alt="imagen" src="https://github.com/user-attachments/assets/95849f62-42a2-43d0-a596-81a2d848bc2a" />
 </p>
 
+Por último agregaremos un circuito que nos permita switchear automáticamente entre fuente de alimentación AC-DC (12V), y una bateria de LITIO 18650 de 3 Celdas (11,1V), denominado **Power Path Management**, además, para protección y control de carga en las baterías, usaremos un BMS (Sistema de gestión de baterías), el circuito será el que se muestra a continuación.
+
+<p align="center">
+<img width="389" height="230" alt="imagen" src="https://github.com/user-attachments/assets/d8607f59-919a-4804-a944-8b3206c64474" />
+</p>
+
+Por lo cual el circuito completo sería el siguiente.
+
+<p align="center">
+<img width="886" height="549" alt="imagen" src="https://github.com/user-attachments/assets/ebbd2f91-b13a-4ec6-8b21-234a86bc4044" />
+</p>
