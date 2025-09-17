@@ -563,7 +563,7 @@ Se comenzó a realizar el diseño de la PCB del circuito de la caneca inteligent
 También se realizó una tabla teniendo en cuenta las especificaciones electrónicas de cada componente a usar, como los voltajes, corrientes y potencias.
 
 <p align="center">
-<img width="868" height="286" alt="imagen" src="https://github.com/user-attachments/assets/b837a7cc-fc10-4485-8a2c-0acfe93f692d" />
+<img width="868" height="284" alt="imagen" src="https://github.com/user-attachments/assets/711ea1a5-d039-4bad-b5a5-e55315202697" />
 </p>
 
 El circuito realizado para la implementación entre componentes y la ESP32-WROOM es el siguiente.
