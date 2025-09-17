@@ -536,7 +536,7 @@ En esta clase explicó la importancia de usar el BMS (Sistema de Gestión de Bat
 Sin embargo, introducimos otro uso del MOSFET canal P, y es el de permitir el switcheo entre alimentacion externa y bateria, permitiendo elegir que tipo de fuente se va a usar para alimentar al sistema automáticamente. Esto sin necesidad de realizar cortes o el usar relés. El siguiente esquemático muestra lo anteriormente mencionado.
 
 <p align="center">
-<img width="495" height="567" alt="imagen" src="https://github.com/user-attachments/assets/3dd968c4-cebc-4e04-9f3c-b97de3d56d21" />
+<img width="374" height="228" alt="imagen" src="https://github.com/user-attachments/assets/03733f20-57dc-43a0-8f21-6babe8e5888c" />
 </p>
 
 Adicionalmente, es preferible incluir en el esquemático del switcheo un circuito BMS, realizando mejor las funcionalidades de cada uno de los circuitos para el cuidado de la bateria y del sistema.
