@@ -596,8 +596,20 @@ Por último agregaremos un circuito que nos permita switchear automáticamente e
 <img width="389" height="230" alt="imagen" src="https://github.com/user-attachments/assets/d8607f59-919a-4804-a944-8b3206c64474" />
 </p>
 
+También no debemos de olvidar en señalar los pines que nos permitiran programar la ESP (GPIO 1 y 3), correspondientes a la comunicación TXD0 y RXD0, estos con un pin a GND, conectarlos a un header x3, para que sea posible conectar la PCB a un programador USB to Serial FTDI de forma externa, de la siguiente manera:
+
+<p align="center">
+<img width="681" height="466" alt="imagen" src="https://github.com/user-attachments/assets/6d69150d-22b2-432b-9c1c-2ae8a4b598b9" />
+</p>
+
+Esto se verá en el circuito así:
+
+<p align="center">
+<img width="238" height="255" alt="imagen" src="https://github.com/user-attachments/assets/bdc1af9f-269b-4ed3-8a49-2be1a5e9950e" />
+</p>
+
 Por lo cual el circuito completo sería el siguiente.
 
 <p align="center">
-<img width="886" height="549" alt="imagen" src="https://github.com/user-attachments/assets/ebbd2f91-b13a-4ec6-8b21-234a86bc4044" />
+<img width="851" height="538" alt="imagen" src="https://github.com/user-attachments/assets/f6d32bd7-6be6-4b31-9b09-9d768a6d001f" />
 </p>
