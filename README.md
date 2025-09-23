@@ -611,5 +611,5 @@ Esto se verá en el circuito así:
 Por lo cual el circuito completo sería el siguiente.
 
 <p align="center">
-<img width="851" height="538" alt="imagen" src="https://github.com/user-attachments/assets/f6d32bd7-6be6-4b31-9b09-9d768a6d001f" />
+<img width="847" height="529" alt="imagen" src="https://github.com/user-attachments/assets/0217dca6-ac48-4f61-9758-e20db5d8c662" />
 </p>
