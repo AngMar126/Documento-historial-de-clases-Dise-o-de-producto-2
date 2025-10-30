@@ -613,3 +613,7 @@ Por lo cual el circuito completo sería el siguiente.
 <p align="center">
 <img width="847" height="529" alt="imagen" src="https://github.com/user-attachments/assets/0217dca6-ac48-4f61-9758-e20db5d8c662" />
 </p>
+
+<p align="center">
+<img width="424" height="498" alt="imagen" src="https://github.com/user-attachments/assets/3e3b6162-bba6-4cf8-8a84-2ccbbc3aa356" />
+</p>
