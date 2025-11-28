@@ -1,0 +1,881 @@
+extern "C" {
+    #include <esp_now.h>
+    #include <esp_wifi.h>
+    #include <nvs_flash.h>
+}
+#include <stdio.h>
+#include <string.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "driver/gpio.h"
+#include "esp_log.h"
+#include "driver/spi_master.h"
+#include "esp_timer.h"
+#include "driver/ledc.h"
+#include "esp_event.h"
+
+// Configuración de pines
+#define PINOFF GPIO_NUM_4
+#define BUTTONOFF GPIO_NUM_12
+#define CLK_PIN GPIO_NUM_14
+#define CS_PIN GPIO_NUM_27
+#define DIN_PIN GPIO_NUM_13
+
+// Pines para sensores ultrasónicos
+#define TRIG1_PIN GPIO_NUM_22
+#define ECHO1_PIN GPIO_NUM_34
+#define TRIG2_PIN GPIO_NUM_23
+#define ECHO2_PIN GPIO_NUM_35
+#define TRIG3_PIN GPIO_NUM_25
+#define ECHO3_PIN GPIO_NUM_36
+#define TRIG4_PIN GPIO_NUM_26
+#define ECHO4_PIN GPIO_NUM_39
+
+// Pines para servomotores
+#define SERVO1_PIN GPIO_NUM_16
+#define SERVO2_PIN GPIO_NUM_17
+#define SERVO3_PIN GPIO_NUM_18
+#define SERVO4_PIN GPIO_NUM_19
+#define SERVO5_PIN GPIO_NUM_21
+
+// Pines para DRV8825 (Motor NEMA17)
+#define EN_PIN GPIO_NUM_5
+#define STEP_PIN GPIO_NUM_32
+#define DIR_PIN GPIO_NUM_33
+
+// Configuración ESP-NOW
+static const char *TAG = "SISTEMA_RECICLAJE";
+uint8_t peerMac[] = {0xA0, 0xA3, 0xB3, 0x2C, 0x49, 0x68}; // ESPCAM
+
+// Estructura para datos ESPNOW
+typedef struct {
+    char objeto_detectado[32];
+    float confidence;
+} espnow_data_t;
+
+espnow_data_t received_data;
+
+// Configuración LEDC para servomotores
+#define LEDC_TIMER              LEDC_TIMER_0
+#define LEDC_MODE               LEDC_LOW_SPEED_MODE
+#define LEDC_CHANNEL_SERVO1     LEDC_CHANNEL_0
+#define LEDC_CHANNEL_SERVO2     LEDC_CHANNEL_1  
+#define LEDC_CHANNEL_SERVO3     LEDC_CHANNEL_2
+#define LEDC_CHANNEL_SERVO4     LEDC_CHANNEL_3
+#define LEDC_CHANNEL_SERVO5     LEDC_CHANNEL_4
+#define LEDC_DUTY_RES           LEDC_TIMER_13_BIT
+#define LEDC_FREQUENCY          50
+
+// Tiempos de activación
+#define SERVO2_TIEMPO_ACTIVACION_MS 3000
+#define SERVO_NUEVO_TIEMPO_MS 2000
+#define MOTOR_TIEMPO_ACTIVACION_MS 10000
+#define MOTOR_DELAY_US 800
+
+// Configuración display
+#define SPI_HOST_DEVICE SPI2_HOST
+#define MAX_DEVICES 4
+spi_device_handle_t spi;
+
+// Comandos MAX7219
+#define MAX7219_REG_NOOP 0x00
+#define MAX7219_REG_DIGIT0 0x01
+#define MAX7219_REG_DIGIT1 0x02
+#define MAX7219_REG_DIGIT2 0x03
+#define MAX7219_REG_DIGIT3 0x04
+#define MAX7219_REG_DIGIT4 0x05
+#define MAX7219_REG_DIGIT5 0x06
+#define MAX7219_REG_DIGIT6 0x07
+#define MAX7219_REG_DIGIT7 0x08
+#define MAX7219_REG_DECODEMODE 0x09
+#define MAX7219_REG_INTENSITY 0x0A
+#define MAX7219_REG_SCANLIMIT 0x0B
+#define MAX7219_REG_SHUTDOWN 0x0C
+#define MAX7219_REG_DISPLAYTEST 0x0F
+
+// Variables globales
+char scroll_text[80] = "Sistema reciclaje iniciado...";
+int text_length = 0;
+int scroll_position = 0;
+uint8_t display_buffer[32] = {0};
+
+// Control servomotores
+bool servo1_activado = false;
+bool servo2_activado = false;
+bool servo3_activado = false;
+bool servo4_activado = false; 
+bool servo5_activado = false;
+TickType_t servo2_tiempo_activacion = 0;
+TickType_t servo_nuevo_tiempo_activacion = 0;
+bool servo2_completado = false;
+
+// Control motor
+bool motor_activado = false;
+TickType_t motor_tiempo_activacion = 0;
+TaskHandle_t motor_task_handle = NULL;
+bool direccion_motor_fijada = false;
+
+// Sensores ultrasónicos
+int ultra1_value = 0;
+int ultra2_value = 0;
+int ultra3_value = 0;
+int ultra4_value = 0;
+char display_text[80] = "";
+
+// Detección de objetos
+char objeto_actual[32] = "";
+bool objeto_detectado_espnow = false;
+
+// Display de objetos
+char objeto_display[20] = "";
+bool mostrar_objeto = false;
+TickType_t tiempo_display_objeto = 0;
+#define TIEMPO_DISPLAY_OBJETO_MS 5000  // Mostrar objeto por 5 segundos
+
+// Fuente 5x7
+const uint8_t font_5x7[][5] = {
+    {0x00,0x00,0x00,0x00,0x00}, // espacio
+    {0x00,0x00,0x5F,0x00,0x00}, // !
+    {0x00,0x07,0x00,0x07,0x00}, // "
+    {0x14,0x7F,0x14,0x7F,0x14}, // #
+    {0x24,0x2A,0x7F,0x2A,0x12}, // $
+    {0x23,0x13,0x08,0x64,0x62}, // %
+    {0x36,0x49,0x55,0x22,0x50}, // &
+    {0x00,0x05,0x03,0x00,0x00}, // '
+    {0x00,0x1C,0x22,0x41,0x00}, // (
+    {0x00,0x41,0x22,0x1C,0x00}, // )
+    {0x14,0x08,0x3E,0x08,0x14}, // *
+    {0x08,0x08,0x3E,0x08,0x08}, // +
+    {0x00,0x50,0x30,0x00,0x00}, // ,
+    {0x08,0x08,0x08,0x08,0x08}, // -
+    {0x00,0x60,0x60,0x00,0x00}, // .
+    {0x20,0x10,0x08,0x04,0x02}, // /
+    {0x3E,0x51,0x49,0x45,0x3E}, // 0
+    {0x00,0x42,0x7F,0x40,0x00}, // 1
+    {0x42,0x61,0x51,0x49,0x46}, // 2
+    {0x21,0x41,0x45,0x4B,0x31}, // 3
+    {0x18,0x14,0x12,0x7F,0x10}, // 4
+    {0x27,0x45,0x45,0x45,0x39}, // 5
+    {0x3C,0x4A,0x49,0x49,0x30}, // 6
+    {0x01,0x71,0x09,0x05,0x03}, // 7
+    {0x36,0x49,0x49,0x49,0x36}, // 8
+    {0x06,0x49,0x49,0x29,0x1E}, // 9
+    {0x00,0x36,0x36,0x00,0x00}, // :
+    {0x00,0x56,0x36,0x00,0x00}, // ;
+    {0x08,0x14,0x22,0x41,0x00}, // <
+    {0x14,0x14,0x14,0x14,0x14}, // =
+    {0x00,0x41,0x22,0x14,0x08}, // >
+    {0x02,0x01,0x51,0x09,0x06}, // ?
+    {0x3E,0x41,0x5D,0x59,0x4E}, // @
+    {0x7C,0x12,0x11,0x12,0x7C}, // A
+    {0x7F,0x49,0x49,0x49,0x36}, // B
+    {0x3E,0x41,0x41,0x41,0x22}, // C
+    {0x7F,0x41,0x41,0x22,0x1C}, // D
+    {0x7F,0x49,0x49,0x49,0x41}, // E
+    {0x7F,0x09,0x09,0x09,0x01}, // F
+    {0x3E,0x41,0x49,0x49,0x7A}, // G
+    {0x7F,0x08,0x08,0x08,0x7F}, // H
+    {0x00,0x41,0x7F,0x41,0x00}, // I
+    {0x20,0x40,0x41,0x3F,0x01}, // J
+    {0x7F,0x08,0x14,0x22,0x41}, // K
+    {0x7F,0x40,0x40,0x40,0x40}, // L
+    {0x7F,0x02,0x0C,0x02,0x7F}, // M
+    {0x7F,0x04,0x08,0x10,0x7F}, // N
+    {0x3E,0x41,0x41,0x41,0x3E}, // O
+    {0x7F,0x09,0x09,0x09,0x06}, // P
+    {0x3E,0x41,0x51,0x21,0x5E}, // Q
+    {0x7F,0x09,0x19,0x29,0x46}, // R
+    {0x46,0x49,0x49,0x49,0x31}, // S
+    {0x01,0x01,0x7F,0x01,0x01}, // T
+    {0x3F,0x40,0x40,0x40,0x3F}, // U
+    {0x1F,0x20,0x40,0x20,0x1F}, // V
+    {0x7F,0x20,0x18,0x20,0x7F}, // W
+    {0x63,0x14,0x08,0x14,0x63}, // X
+    {0x07,0x08,0x70,0x08,0x07}, // Y
+    {0x61,0x51,0x49,0x45,0x43}, // Z
+    {0x00,0x7F,0x41,0x41,0x00}, // [
+    {0x02,0x04,0x08,0x10,0x20}, // / al reves
+    {0x00,0x41,0x41,0x7F,0x00}, // ]
+    {0x04,0x02,0x01,0x02,0x04}, // ^
+    {0x40,0x40,0x40,0x40,0x40}, // _
+    {0x00,0x01,0x02,0x04,0x00}, // `
+    {0x20,0x54,0x54,0x54,0x78}, // a
+    {0x7F,0x48,0x44,0x44,0x38}, // b
+    {0x38,0x44,0x44,0x44,0x08}, // c
+    {0x38,0x44,0x44,0x48,0x7F}, // d
+    {0x38,0x54,0x54,0x54,0x18}, // e
+    {0x08,0x7E,0x09,0x01,0x02}, // f
+    {0x0C,0x52,0x52,0x52,0x3E}, // g
+    {0x7F,0x08,0x04,0x04,0x78}, // h
+    {0x00,0x44,0x7D,0x40,0x00}, // i
+    {0x20,0x40,0x44,0x3D,0x00}, // j
+    {0x7F,0x10,0x28,0x44,0x00}, // k
+    {0x00,0x41,0x7F,0x40,0x00}, // l
+    {0x7C,0x04,0x18,0x04,0x78}, // m
+    {0x7C,0x08,0x04,0x04,0x78}, // n
+    {0x38,0x44,0x44,0x44,0x38}, // o
+    {0x7C,0x14,0x14,0x14,0x08}, // p
+    {0x08,0x14,0x14,0x14,0x7C}, // q
+    {0x7C,0x08,0x04,0x04,0x08}, // r
+    {0x48,0x54,0x54,0x54,0x20}, // s
+    {0x04,0x3F,0x44,0x40,0x20}, // t
+    {0x3C,0x40,0x40,0x20,0x7C}, // u
+    {0x1C,0x20,0x40,0x20,0x1C}, // v
+    {0x3C,0x40,0x30,0x40,0x3C}, // w
+    {0x44,0x28,0x10,0x28,0x44}, // x
+    {0x0C,0x50,0x50,0x50,0x3C}, // y
+    {0x44,0x64,0x54,0x4C,0x44}, // z
+    {0x08,0x36,0x41,0x00,0x00}, // {
+    {0x00,0x00,0x7F,0x00,0x00}, // |
+    {0x00,0x41,0x36,0x08,0x00}, // }
+    {0x08,0x04,0x08,0x10,0x08}, // ~
+};
+
+// ========== DECLARACIONES TEMPRANAS ==========
+int get_char_index(char c);
+void mover_servomotor(ledc_channel_t channel, int angulo);
+void controlar_servo2_objeto_detectado();
+void controlar_servo_por_objeto(const char* objeto);
+void controlar_motor_despues_servo2();
+
+// ========== IMPLEMENTACIONES ==========
+
+int get_char_index(char c) {
+    if (c < 32 || c > 126) c = 32;
+    return c - 32;
+}
+
+void mover_servomotor(ledc_channel_t channel, int angulo) {
+    uint32_t duty;
+    
+    if (angulo < 0) angulo = 0;
+    if (angulo > 180) angulo = 180;
+    
+    duty = 409 + (angulo * 410) / 180;
+    
+    ESP_LOGI(TAG, "Servo canal %d -> %d° (duty: %lu)", channel, angulo, duty);
+    
+    ESP_ERROR_CHECK(ledc_set_duty(LEDC_LOW_SPEED_MODE, channel, duty));
+    ESP_ERROR_CHECK(ledc_update_duty(LEDC_LOW_SPEED_MODE, channel));
+}
+
+void controlar_servo2_objeto_detectado() {
+    if (!servo2_activado) {
+        mover_servomotor(LEDC_CHANNEL_SERVO2, 180);
+        servo2_activado = true;
+        servo2_tiempo_activacion = xTaskGetTickCount();
+        servo2_completado = false;
+        ESP_LOGI(TAG, "Servo2 ACTIVADO por objeto detectado");
+    }
+}
+
+void controlar_servo_por_objeto(const char* objeto) {
+    ESP_LOGI(TAG, "Procesando objeto: %s", objeto);
+    
+    // Configurar texto para display según el objeto detectado
+    if (strstr(objeto, "Botella") != NULL || strstr(objeto, "Otros_plasticos") != NULL) {
+        strcpy(objeto_display, "PLASTICO");
+        mover_servomotor(LEDC_CHANNEL_SERVO3, 180);
+        servo3_activado = true;
+        servo_nuevo_tiempo_activacion = xTaskGetTickCount();
+        ESP_LOGI(TAG, "Servo3 activado para plásticos");
+    }
+    else if (strstr(objeto, "Papel") != NULL || strstr(objeto, "Caja") != NULL || 
+             strstr(objeto, "Otros_carton") != NULL) {
+        strcpy(objeto_display, "PAPEL");
+        mover_servomotor(LEDC_CHANNEL_SERVO4, 180);
+        servo4_activado = true;
+        servo_nuevo_tiempo_activacion = xTaskGetTickCount();
+        ESP_LOGI(TAG, "Servo4 activado para papel/cartón");
+    }
+    else if (strstr(objeto, "Lata") != NULL || strstr(objeto, "Otros_aluminio") != NULL) {
+        strcpy(objeto_display, "METAL");
+        mover_servomotor(LEDC_CHANNEL_SERVO5, 180);
+        servo5_activado = true;
+        servo_nuevo_tiempo_activacion = xTaskGetTickCount();
+        ESP_LOGI(TAG, "Servo5 activado para metales");
+    }
+    else if (strstr(objeto, "No_reciclable") != NULL) {
+        strcpy(objeto_display, "NO RECICLABLE");
+        ESP_LOGI(TAG, "Objeto no reciclable - servos quietos");
+    }
+    else {
+        // Por si llega algún objeto no reconocido
+        strncpy(objeto_display, objeto, sizeof(objeto_display)-1);
+        objeto_display[sizeof(objeto_display)-1] = '\0';
+    }
+    
+    // Activar display del objeto
+    mostrar_objeto = true;
+    tiempo_display_objeto = xTaskGetTickCount();
+    
+    // Siempre activar Servo2 cuando se detecta cualquier objeto
+    controlar_servo2_objeto_detectado();
+}
+
+// Callbacks ESP-NOW
+void espnow_receive_cb(const esp_now_recv_info_t *recv_info, const uint8_t *data, int len) {
+    if (len == sizeof(espnow_data_t)) {
+        memcpy(&received_data, data, sizeof(espnow_data_t));
+        
+        ESP_LOGI(TAG, "Objeto detectado: %s (confianza: %.2f)", 
+                 received_data.objeto_detectado, received_data.confidence);
+        
+        strcpy(objeto_actual, received_data.objeto_detectado);
+        objeto_detectado_espnow = true;
+        
+        // Controlar servos según objeto detectado
+        controlar_servo_por_objeto(received_data.objeto_detectado);
+        
+        // El display se actualizará automáticamente en update_ultrasonic_display()
+    }
+}
+
+void espnow_send_status_cb(const wifi_tx_info_t *info, esp_now_send_status_t status) {
+    ESP_LOGI(TAG, "Estado envio ESP-NOW: %s", status == ESP_NOW_SEND_SUCCESS ? "OK" : "Fallo");
+}
+
+// Inicialización WiFi y ESP-NOW
+void wifi_init() {
+    ESP_ERROR_CHECK(esp_netif_init());
+    ESP_ERROR_CHECK(esp_event_loop_create_default());
+    
+    wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
+    ESP_ERROR_CHECK(esp_wifi_init(&cfg));
+    ESP_ERROR_CHECK(esp_wifi_set_storage(WIFI_STORAGE_RAM));
+    ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
+    ESP_ERROR_CHECK(esp_wifi_start());
+}
+
+void setup_espnow() {
+    wifi_init();
+    
+    ESP_ERROR_CHECK(esp_now_init());
+    
+    ESP_ERROR_CHECK(esp_now_register_recv_cb(espnow_receive_cb));
+    ESP_ERROR_CHECK(esp_now_register_send_cb(espnow_send_status_cb));
+    
+    esp_now_peer_info_t peerInfo = {};
+    memcpy(peerInfo.peer_addr, peerMac, 6);
+    peerInfo.channel = 0;
+    peerInfo.encrypt = false;
+    
+    ESP_ERROR_CHECK(esp_now_add_peer(&peerInfo));
+    
+    ESP_LOGI(TAG, "ESP-NOW configurado. Peer: %02X:%02X:%02X:%02X:%02X:%02X", 
+             peerMac[0], peerMac[1], peerMac[2], peerMac[3], peerMac[4], peerMac[5]);
+}
+
+// Configuración servomotores
+void setup_servomotores() {
+    ledc_timer_config_t timer_config = {
+        .speed_mode = LEDC_LOW_SPEED_MODE,
+        .duty_resolution = LEDC_TIMER_13_BIT,
+        .timer_num = LEDC_TIMER_0,
+        .freq_hz = 50,
+        .clk_cfg = LEDC_AUTO_CLK,
+        .deconfigure = false
+    };
+    ESP_ERROR_CHECK(ledc_timer_config(&timer_config));
+
+    ledc_channel_config_t channels[5];
+    
+    // Inicializar todos los canales con memset
+    for (int i = 0; i < 5; i++) {
+        memset(&channels[i], 0, sizeof(ledc_channel_config_t));
+    }
+    
+    // Configurar parámetros específicos
+    channels[0].gpio_num = SERVO1_PIN;
+    channels[0].speed_mode = LEDC_LOW_SPEED_MODE;
+    channels[0].channel = LEDC_CHANNEL_0;
+    channels[0].timer_sel = LEDC_TIMER_0;
+
+    channels[1].gpio_num = SERVO2_PIN;
+    channels[1].speed_mode = LEDC_LOW_SPEED_MODE;
+    channels[1].channel = LEDC_CHANNEL_1;
+    channels[1].timer_sel = LEDC_TIMER_0;
+
+    channels[2].gpio_num = SERVO3_PIN;
+    channels[2].speed_mode = LEDC_LOW_SPEED_MODE;
+    channels[2].channel = LEDC_CHANNEL_2;
+    channels[2].timer_sel = LEDC_TIMER_0;
+
+    channels[3].gpio_num = SERVO4_PIN;
+    channels[3].speed_mode = LEDC_LOW_SPEED_MODE;
+    channels[3].channel = LEDC_CHANNEL_3;
+    channels[3].timer_sel = LEDC_TIMER_0;
+
+    channels[4].gpio_num = SERVO5_PIN;
+    channels[4].speed_mode = LEDC_LOW_SPEED_MODE;
+    channels[4].channel = LEDC_CHANNEL_4;
+    channels[4].timer_sel = LEDC_TIMER_0;
+
+    for (int i = 0; i < 5; i++) {
+        ESP_ERROR_CHECK(ledc_channel_config(&channels[i]));
+    }
+
+    ESP_LOGI(TAG, "5 servomotores configurados");
+}
+
+void controlar_servo1_canecas_llenas(bool alguna_caneca_llena) {
+    if (alguna_caneca_llena && !servo1_activado) {
+        mover_servomotor(LEDC_CHANNEL_SERVO1, 180);
+        servo1_activado = true;
+        ESP_LOGI(TAG, "Servo1 ACTIVADO por caneca llena");
+    } else if (!alguna_caneca_llena && servo1_activado) {
+        mover_servomotor(LEDC_CHANNEL_SERVO1, 0);
+        servo1_activado = false;
+        ESP_LOGI(TAG, "Servo1 DESACTIVADO - canecas vacias");
+    }
+}
+
+void verificar_servo2_tiempo() {
+    if (servo2_activado) {
+        TickType_t tiempo_actual = xTaskGetTickCount();
+        TickType_t tiempo_transcurrido = tiempo_actual - servo2_tiempo_activacion;
+        
+        if (tiempo_transcurrido >= pdMS_TO_TICKS(SERVO2_TIEMPO_ACTIVACION_MS)) {
+            mover_servomotor(LEDC_CHANNEL_SERVO2, 0);
+            servo2_activado = false;
+            servo2_completado = true;
+            ESP_LOGI(TAG, "Servo2 regresado a 0° - CICLO COMPLETADO");
+            controlar_motor_despues_servo2();
+        }
+    }
+}
+
+void verificar_servo_nuevo_tiempo() {
+    TickType_t tiempo_actual = xTaskGetTickCount();
+    
+    if (servo3_activado) {
+        if ((tiempo_actual - servo_nuevo_tiempo_activacion) >= pdMS_TO_TICKS(SERVO_NUEVO_TIEMPO_MS)) {
+            mover_servomotor(LEDC_CHANNEL_SERVO3, 0);
+            servo3_activado = false;
+            ESP_LOGI(TAG, "Servo3 (plásticos) regresado a 0°");
+        }
+    }
+    
+    if (servo4_activado) {
+        if ((tiempo_actual - servo_nuevo_tiempo_activacion) >= pdMS_TO_TICKS(SERVO_NUEVO_TIEMPO_MS)) {
+            mover_servomotor(LEDC_CHANNEL_SERVO4, 0);
+            servo4_activado = false;
+            ESP_LOGI(TAG, "Servo4 (papel/cartón) regresado a 0°");
+        }
+    }
+    
+    if (servo5_activado) {
+        if ((tiempo_actual - servo_nuevo_tiempo_activacion) >= pdMS_TO_TICKS(SERVO_NUEVO_TIEMPO_MS)) {
+            mover_servomotor(LEDC_CHANNEL_SERVO5, 0);
+            servo5_activado = false;
+            ESP_LOGI(TAG, "Servo5 (metales) regresado a 0°");
+        }
+    }
+}
+
+void setup_stepper_motor() {
+    gpio_set_direction(EN_PIN, GPIO_MODE_OUTPUT);
+    gpio_set_direction(STEP_PIN, GPIO_MODE_OUTPUT);
+    gpio_set_direction(DIR_PIN, GPIO_MODE_OUTPUT);
+    
+    gpio_set_level(EN_PIN, 1);
+    gpio_set_level(STEP_PIN, 0);
+    gpio_set_level(DIR_PIN, 0);
+    direccion_motor_fijada = true;
+    
+    ESP_LOGI(TAG, "Motor NEMA17 configurado");
+}
+
+void enable_stepper() {
+    gpio_set_level(EN_PIN, 0);
+    vTaskDelay(pdMS_TO_TICKS(10));
+    ESP_LOGI(TAG, "Motor NEMA17 HABILITADO");
+}
+
+void disable_stepper() {
+    gpio_set_level(EN_PIN, 1);
+    ESP_LOGI(TAG, "Motor NEMA17 DESHABILITADO");
+}
+
+void controlar_motor_despues_servo2() {
+    if (!motor_activado && motor_task_handle == NULL && servo2_completado) {
+        ESP_LOGI(TAG, "Activando motor NEMA17 después de Servo2");
+        
+        BaseType_t result = xTaskCreate(
+            [](void *pvParameters) {
+                ESP_LOGI(TAG, "=== INICIANDO ROTACIÓN CONTINUA DEL MOTOR ===");
+                enable_stepper();
+                
+                TickType_t start_time = xTaskGetTickCount();
+                int step_counter = 0;
+                
+                while ((xTaskGetTickCount() - start_time) < pdMS_TO_TICKS(MOTOR_TIEMPO_ACTIVACION_MS)) {
+                    gpio_set_level(STEP_PIN, 1);
+                    esp_rom_delay_us(MOTOR_DELAY_US);
+                    gpio_set_level(STEP_PIN, 0);
+                    esp_rom_delay_us(MOTOR_DELAY_US);
+                    step_counter++;
+                    
+                    if (step_counter % 200 == 0) {
+                        ESP_LOGI(TAG, "Motor: %d pasos", step_counter);
+                    }
+                    
+                    if (step_counter % 100 == 0) {
+                        vTaskDelay(1);
+                    }
+                }
+                
+                disable_stepper();
+                ESP_LOGI(TAG, "Rotación completada: %d pasos", step_counter);
+                
+                motor_activado = false;
+                motor_task_handle = NULL;
+                servo2_completado = false;
+                vTaskDelete(NULL);
+            }, 
+            "motor_task", 4096, NULL, 1, &motor_task_handle
+        );
+        
+        if (result == pdPASS) {
+            motor_activado = true;
+            motor_tiempo_activacion = xTaskGetTickCount();
+        }
+    }
+}
+
+void verificar_motor_tiempo() {
+    if (motor_activado && motor_task_handle != NULL) {
+        TickType_t tiempo_actual = xTaskGetTickCount();
+        TickType_t tiempo_transcurrido = tiempo_actual - motor_tiempo_activacion;
+        
+        if (tiempo_transcurrido >= pdMS_TO_TICKS(15000)) {
+            ESP_LOGW(TAG, "Motor timeout, forzando desactivación");
+            disable_stepper();
+            
+            if (motor_task_handle != NULL) {
+                vTaskDelete(motor_task_handle);
+                motor_task_handle = NULL;
+            }
+            
+            motor_activado = false;
+            servo2_completado = false;
+        }
+    }
+}
+
+// Funciones display
+void max7219_write_all(uint8_t reg, uint8_t *data) {
+    uint8_t tx_data[MAX_DEVICES * 2];
+    for (int i = 0; i < MAX_DEVICES; i++) {
+        tx_data[i * 2] = reg;
+        tx_data[i * 2 + 1] = data[i];
+    }
+    spi_transaction_t t;
+    memset(&t, 0, sizeof(t));
+    t.length = MAX_DEVICES * 16;
+    t.tx_buffer = tx_data;
+    spi_device_polling_transmit(spi, &t);
+}
+
+void max7219_write_all_same(uint8_t reg, uint8_t val) {
+    uint8_t data[MAX_DEVICES];
+    for (int i = 0; i < MAX_DEVICES; i++) data[i] = val;
+    max7219_write_all(reg, data);
+}
+
+void max7219_init() {
+    spi_bus_config_t buscfg;
+    memset(&buscfg, 0, sizeof(buscfg));
+    buscfg.miso_io_num = -1;
+    buscfg.mosi_io_num = DIN_PIN;
+    buscfg.sclk_io_num = CLK_PIN;
+    buscfg.quadwp_io_num = -1;
+    buscfg.quadhd_io_num = -1;
+    buscfg.max_transfer_sz = MAX_DEVICES * 2;
+
+    spi_device_interface_config_t devcfg;
+    memset(&devcfg, 0, sizeof(devcfg));
+    devcfg.clock_speed_hz = 1000000;
+    devcfg.mode = 0;
+    devcfg.spics_io_num = CS_PIN;
+    devcfg.queue_size = 1;
+
+    ESP_ERROR_CHECK(spi_bus_initialize(SPI_HOST_DEVICE, &buscfg, SPI_DMA_DISABLED));
+    ESP_ERROR_CHECK(spi_bus_add_device(SPI_HOST_DEVICE, &devcfg, &spi));
+
+    max7219_write_all_same(MAX7219_REG_SCANLIMIT, 7);
+    max7219_write_all_same(MAX7219_REG_DECODEMODE, 0);
+    max7219_write_all_same(MAX7219_REG_DISPLAYTEST, 0);
+    max7219_write_all_same(MAX7219_REG_INTENSITY, 8);
+    max7219_write_all_same(MAX7219_REG_SHUTDOWN, 1);
+    
+    ESP_LOGI(TAG, "MAX7219 inicializado");
+}
+
+void display_clear() {
+    for (int i = 1; i <= 8; i++) {
+        max7219_write_all_same(i, 0x00);
+    }
+    memset(display_buffer, 0, sizeof(display_buffer));
+}
+
+void display_refresh() {
+    for (int row = 0; row < 8; row++) {
+        uint8_t row_data[MAX_DEVICES];
+        for (int dev = 0; dev < MAX_DEVICES; dev++) {
+            uint8_t val = 0;
+            for (int col = 0; col < 8; col++) {
+                int buffer_col = dev * 8 + col;
+                if (display_buffer[buffer_col] & (1 << row)) {
+                    val |= (1 << (7 - col));
+                }
+            }
+            row_data[dev] = val;
+        }
+        max7219_write_all(MAX7219_REG_DIGIT0 + row, row_data);
+    }
+}
+
+void scroll_text_update() {
+    memset(display_buffer, 0, sizeof(display_buffer));
+    
+    for (int i = 0; i < 32; i++) {
+        int text_idx = (scroll_position + i) % (text_length * 6);
+        int char_idx = text_idx / 6;
+        int col_in_char = text_idx % 6;
+
+        if (char_idx < text_length) {
+            char current_char = scroll_text[char_idx];
+            int font_idx = get_char_index(current_char);
+            
+            if (col_in_char < 5) {
+                display_buffer[i] = font_5x7[font_idx][col_in_char];
+            }
+        }
+    }
+
+    display_refresh();
+    
+    scroll_position++;
+    if (scroll_position >= text_length * 6) {
+        scroll_position = 0;
+    }
+}
+
+void setup_ultrasonic_pins() {
+    gpio_set_direction(TRIG1_PIN, GPIO_MODE_OUTPUT);
+    gpio_set_direction(TRIG2_PIN, GPIO_MODE_OUTPUT);
+    gpio_set_direction(TRIG3_PIN, GPIO_MODE_OUTPUT);
+    gpio_set_direction(TRIG4_PIN, GPIO_MODE_OUTPUT);
+    
+    gpio_set_direction(ECHO1_PIN, GPIO_MODE_INPUT);
+    gpio_set_direction(ECHO2_PIN, GPIO_MODE_INPUT);
+    gpio_set_direction(ECHO3_PIN, GPIO_MODE_INPUT);
+    gpio_set_direction(ECHO4_PIN, GPIO_MODE_INPUT);
+    
+    gpio_set_level(TRIG1_PIN, 0);
+    gpio_set_level(TRIG2_PIN, 0);
+    gpio_set_level(TRIG3_PIN, 0);
+    gpio_set_level(TRIG4_PIN, 0);
+    
+    ESP_LOGI(TAG, "Pines ultrasónicos configurados");
+}
+
+int read_ultrasonic(int trig_pin, int echo_pin) {
+    gpio_set_level((gpio_num_t)trig_pin, 0);
+    esp_rom_delay_us(2);
+    gpio_set_level((gpio_num_t)trig_pin, 1);
+    esp_rom_delay_us(10);
+    gpio_set_level((gpio_num_t)trig_pin, 0);
+    
+    uint32_t timeout = 10000;
+    uint32_t start_time = esp_timer_get_time();
+    while (gpio_get_level((gpio_num_t)echo_pin) == 0) {
+        if ((esp_timer_get_time() - start_time) > timeout) {
+            return 999;
+        }
+    }
+    
+    start_time = esp_timer_get_time();
+    while (gpio_get_level((gpio_num_t)echo_pin) == 1) {
+        if ((esp_timer_get_time() - start_time) > 30000) {
+            return 999;
+        }
+    }
+    
+    uint32_t echo_end = esp_timer_get_time();
+    uint32_t duration = echo_end - start_time;
+    
+    int distance = (duration * 0.0343) / 2;
+    
+    if (distance < 2 || distance > 400) {
+        return 999;
+    }
+    
+    return distance;
+}
+
+void update_ultrasonic_display() {
+    ultra1_value = read_ultrasonic(TRIG1_PIN, ECHO1_PIN);
+    ultra2_value = read_ultrasonic(TRIG2_PIN, ECHO2_PIN);
+    ultra3_value = read_ultrasonic(TRIG3_PIN, ECHO3_PIN);
+    ultra4_value = read_ultrasonic(TRIG4_PIN, ECHO4_PIN);
+    
+    ESP_LOGI(TAG, "Sensores - U1:%dcm U2:%dcm U3:%dcm U4:%dcm", 
+             ultra1_value, ultra2_value, ultra3_value, ultra4_value);
+    
+    bool objeto_detectado = (ultra1_value <= 10 && ultra1_value != 999);
+    bool caneca1_llena = (ultra2_value <= 9 && ultra2_value != 999);
+    bool caneca2_llena = (ultra3_value <= 9 && ultra3_value != 999);
+    bool caneca3_llena = (ultra4_value <= 9 && ultra4_value != 999);
+    bool alguna_caneca_llena = caneca1_llena || caneca2_llena || caneca3_llena;
+    
+    controlar_servo1_canecas_llenas(alguna_caneca_llena);
+    
+    // PRIORIDAD 1: Mostrar objeto detectado por ESP-NOW
+    if (mostrar_objeto) {
+        TickType_t tiempo_actual = xTaskGetTickCount();
+        TickType_t tiempo_transcurrido = tiempo_actual - tiempo_display_objeto;
+        
+        if (tiempo_transcurrido < pdMS_TO_TICKS(TIEMPO_DISPLAY_OBJETO_MS)) {
+            // Mostrar el objeto detectado
+            snprintf(display_text, sizeof(display_text), "%s ", objeto_display);
+        } else {
+            // Tiempo terminado, volver al modo normal
+            mostrar_objeto = false;
+            objeto_detectado_espnow = false;
+        }
+    }
+    // PRIORIDAD 2: Mostrar objeto detectado por ultrasonido
+    else if (objeto_detectado_espnow) {
+        snprintf(display_text, sizeof(display_text), "Obj: %s ", objeto_actual);
+        objeto_detectado_espnow = false;
+    }
+    // PRIORIDAD 3: Mostrar objeto detectado por ultrasonido local
+    else if (objeto_detectado) {
+        strcpy(display_text, "OBJETO DETECTADO ");
+    } 
+    // PRIORIDAD 4: Mostrar canecas llenas
+    else if (caneca1_llena) {
+        strcpy(display_text, "CANECA 1 LLENA ");
+    }
+    else if (caneca2_llena) {
+        strcpy(display_text, "CANECA 2 LLENA ");
+    }
+    else if (caneca3_llena) {
+        strcpy(display_text, "CANECA 3 LLENA ");
+    }
+    // PRIORIDAD 5: Mensaje normal
+    else {
+        strcpy(display_text, "BIENVENIDO ");
+    }
+    
+    strcpy(scroll_text, display_text);
+    text_length = strlen(scroll_text);
+}
+
+extern "C" void app_main() {
+    esp_err_t ret = nvs_flash_init();
+    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+        ESP_ERROR_CHECK(nvs_flash_erase());
+        ret = nvs_flash_init();
+    }
+    ESP_ERROR_CHECK(ret);
+    
+    gpio_set_direction(PINOFF, GPIO_MODE_OUTPUT);
+    gpio_set_level(PINOFF, 1);
+    
+    gpio_set_direction(BUTTONOFF, GPIO_MODE_INPUT);
+    gpio_set_pull_mode(BUTTONOFF, GPIO_PULLUP_ONLY);
+    
+    setup_ultrasonic_pins();
+    setup_servomotores();
+    setup_stepper_motor();
+    setup_espnow();
+    max7219_init();
+    display_clear();
+
+    strcpy(scroll_text, "Sistema reciclaje listo ");
+    text_length = strlen(scroll_text);
+    scroll_text_update();
+    
+    ESP_LOGI(TAG, "Sistema completamente inicializado");
+
+    bool sistema_encendido = true;
+    TickType_t last_scroll_time = xTaskGetTickCount();
+    TickType_t last_sensor_time = xTaskGetTickCount();
+    TickType_t last_servo_check_time = xTaskGetTickCount();
+    const TickType_t scroll_delay = pdMS_TO_TICKS(50);
+    const TickType_t sensor_delay = pdMS_TO_TICKS(500);
+    const TickType_t servo_check_delay = pdMS_TO_TICKS(100);
+
+    while (1) {
+        int btnState = gpio_get_level(BUTTONOFF);
+
+        if (btnState == 0) {
+            ESP_LOGI(TAG, "Boton presionado, esperando...");
+            int tiempo = 0;
+            while (gpio_get_level(BUTTONOFF) == 0) {
+                vTaskDelay(100 / portTICK_PERIOD_MS);
+                tiempo += 100;
+                if (tiempo >= 2000) {
+                    sistema_encendido = !sistema_encendido;
+                    if (sistema_encendido) {
+                        gpio_set_level(PINOFF, 1);
+                        max7219_write_all_same(MAX7219_REG_SHUTDOWN, 1);
+                        strcpy(scroll_text, "Sistema ACTIVADO ");
+                        text_length = strlen(scroll_text);
+                        scroll_position = 0;
+                        ESP_LOGI(TAG, "Sistema ENCENDIDO");
+                    } else {
+                        gpio_set_level(PINOFF, 0);
+                        max7219_write_all_same(MAX7219_REG_SHUTDOWN, 0);
+                        display_clear();
+                        for (int i = 0; i < 5; i++) {
+                            mover_servomotor((ledc_channel_t)i, 0);
+                        }
+                        disable_stepper();
+                        
+                        if (motor_task_handle != NULL) {
+                            vTaskDelete(motor_task_handle);
+                            motor_task_handle = NULL;
+                        }
+                        
+                        servo1_activado = false;
+                        servo2_activado = false;
+                        servo3_activado = false;
+                        servo4_activado = false;
+                        servo5_activado = false;
+                        motor_activado = false;
+                        servo2_completado = false;
+                        mostrar_objeto = false;
+                        ESP_LOGI(TAG, "Sistema APAGADO");
+                    }
+                    vTaskDelay(500 / portTICK_PERIOD_MS);
+                    break;
+                }
+            }
+        }
+
+        if (sistema_encendido) {
+            if (xTaskGetTickCount() - last_sensor_time >= sensor_delay) {
+                update_ultrasonic_display();
+                last_sensor_time = xTaskGetTickCount();
+            }
+            
+            if (xTaskGetTickCount() - last_servo_check_time >= servo_check_delay) {
+                verificar_servo2_tiempo();
+                verificar_servo_nuevo_tiempo();
+                verificar_motor_tiempo();
+                last_servo_check_time = xTaskGetTickCount();
+            }
+            
+            if (xTaskGetTickCount() - last_scroll_time >= scroll_delay) {
+                scroll_text_update();
+                last_scroll_time = xTaskGetTickCount();
+            }
+        }
+
+        vTaskDelay(50 / portTICK_PERIOD_MS);
+    }
+}

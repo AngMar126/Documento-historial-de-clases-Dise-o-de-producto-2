@@ -1,0 +1,483 @@
+<template>
+  <div id="app">
+    <div class="container">
+      <header>
+        <h1>ReciclajEficiente</h1>
+        <p class="subtitle">Sistema Inteligente de Gestión de Residuos</p>
+      </header>
+      
+      <div class="dashboard">
+        <div class="bin-card bin-plastic">
+          <div class="bin-header">
+            <div class="bin-icon">♳</div>
+            <h2>Caneca de Plástico</h2>
+          </div>
+          <div class="bin-content">
+            <div class="material-item" v-for="material in plasticMaterials" :key="material.name">
+              <div class="material-name">
+                <span class="material-icon">{{ material.icon }}</span>
+                <span>{{ material.name }}</span>
+              </div>
+              <div class="material-value">{{ material.value }}%</div>
+              <div class="progress-bar">
+                <div class="progress-fill plastic-progress" :style="{ width: material.value + '%' }"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bin-card bin-paper">
+          <div class="bin-header">
+            <div class="bin-icon">📄</div>
+            <h2>Caneca de Papel</h2>
+          </div>
+          <div class="bin-content">
+            <div class="material-item" v-for="material in paperMaterials" :key="material.name">
+              <div class="material-name">
+                <span class="material-icon">{{ material.icon }}</span>
+                <span>{{ material.name }}</span>
+              </div>
+              <div class="material-value">{{ material.value }}%</div>
+              <div class="progress-bar">
+                <div class="progress-fill paper-progress" :style="{ width: material.value + '%' }"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bin-card bin-aluminum">
+          <div class="bin-header">
+            <div class="bin-icon">🥫</div>
+            <h2>Caneca de Aluminio</h2>
+          </div>
+          <div class="bin-content">
+            <div class="material-item" v-for="material in aluminumMaterials" :key="material.name">
+              <div class="material-name">
+                <span class="material-icon">{{ material.icon }}</span>
+                <span>{{ material.name }}</span>
+              </div>
+              <div class="material-value">{{ material.value }}%</div>
+              <div class="progress-bar">
+                <div class="progress-fill aluminum-progress" :style="{ width: material.value + '%' }"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="status-panel">
+        <h2 style="margin-bottom: 20px;">Estado del Sistema</h2>
+        <div class="status-grid">
+          <div class="status-item">
+            <div class="status-label">Sistema Principal</div>
+            <div class="status-value system-active">ACTIVO</div>
+          </div>
+          
+          <div class="status-item">
+            <div class="status-label">Detección de Objetos</div>
+            <div class="status-value" :class="detectionClass">{{ detectedObject }}</div>
+          </div>
+          
+          <div class="status-item">
+            <div class="status-label">Servomotores</div>
+            <div class="status-value system-active">FUNCIONANDO</div>
+          </div>
+          
+          <div class="status-item">
+            <div class="status-label">Motor NEMA17</div>
+            <div class="status-value" :class="motorClass">{{ motorStatus }}</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="stats-section">
+        <div class="stat-card">
+          <div class="stat-label">Objetos Clasificados Hoy</div>
+          <div class="stat-value">{{ stats.objectsToday }}</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-label">Tasa de Acierto</div>
+          <div class="stat-value">{{ stats.accuracyRate }}%</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-label">Kg Reciclados</div>
+          <div class="stat-value">{{ stats.kgRecycled }}</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-label">Tiempo Activo</div>
+          <div class="stat-value">{{ stats.activeTime }}</div>
+        </div>
+      </div>
+      
+      <footer>
+        <p>Sistema ReciclajEficiente &copy; 2023 - Monitoreo en tiempo real</p>
+      </footer>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'App',
+  data() {
+    return {
+      plasticMaterials: [
+        { name: 'Botellas', value: 78, icon: '🥤' },
+        { name: 'Envases', value: 65, icon: '🛍️' },
+        { name: 'Otros Plásticos', value: 42, icon: '🍶' }
+      ],
+      paperMaterials: [
+        { name: 'Periódicos', value: 55, icon: '📰' },
+        { name: 'Cajas', value: 82, icon: '📦' },
+        { name: 'Otros Papeles', value: 38, icon: '📄' }
+      ],
+      aluminumMaterials: [
+        { name: 'Latas', value: 91, icon: '🥫' },
+        { name: 'Envases Metálicos', value: 47, icon: '🔩' },
+        { name: 'Tapas', value: 29, icon: '🍾' }
+      ],
+      detectedObject: 'BOTELLA',
+      motorStatus: 'INACTIVO',
+      stats: {
+        objectsToday: 47,
+        accuracyRate: 94,
+        kgRecycled: '12.8',
+        activeTime: '6h 24m'
+      },
+      objectTypes: ['BOTELLA', 'LATA', 'PAPEL', 'CAJA', 'NO RECICLABLE']
+    }
+  },
+  computed: {
+    detectionClass() {
+      return this.detectedObject === 'NO RECICLABLE' ? 'system-inactive' : 'object-detected';
+    },
+    motorClass() {
+      return this.motorStatus === 'ACTIVO' ? 'system-active' : 'system-inactive';
+    }
+  },
+  mounted() {
+    // Iniciar actualizaciones en tiempo real
+    this.startRealTimeUpdates();
+  },
+  methods: {
+    startRealTimeUpdates() {
+      // Actualizar valores cada 5 segundos
+      setInterval(() => {
+        this.updateMaterialValues();
+        this.updateStats();
+      }, 5000);
+      
+      // Cambiar objeto detectado cada 8 segundos
+      setInterval(() => {
+        this.changeObjectDetection();
+      }, 8000);
+      
+      // Cambiar estado del motor cada 15 segundos
+      setInterval(() => {
+        this.toggleMotorStatus();
+      }, 15000);
+    },
+    
+    updateMaterialValues() {
+      // Actualizar valores de plástico
+      this.plasticMaterials = this.plasticMaterials.map(material => ({
+        ...material,
+        value: Math.min(100, Math.max(0, material.value + (Math.random() * 10 - 5)))
+      }));
+      
+      // Actualizar valores de papel
+      this.paperMaterials = this.paperMaterials.map(material => ({
+        ...material,
+        value: Math.min(100, Math.max(0, material.value + (Math.random() * 10 - 5)))
+      }));
+      
+      // Actualizar valores de aluminio
+      this.aluminumMaterials = this.aluminumMaterials.map(material => ({
+        ...material,
+        value: Math.min(100, Math.max(0, material.value + (Math.random() * 10 - 5)))
+      }));
+    },
+    
+    updateStats() {
+      this.stats.objectsToday += Math.floor(Math.random() * 3);
+      this.stats.kgRecycled = (parseFloat(this.stats.kgRecycled) + (Math.random() * 0.2)).toFixed(1);
+      
+      // Simular cambio en tiempo activo
+      const timeParts = this.stats.activeTime.split(' ');
+      let hours = parseInt(timeParts[0]);
+      let minutes = parseInt(timeParts[1]);
+      
+      minutes += 1;
+      if (minutes >= 60) {
+        minutes = 0;
+        hours += 1;
+      }
+      
+      this.stats.activeTime = `${hours}h ${minutes}m`;
+    },
+    
+    changeObjectDetection() {
+      const randomIndex = Math.floor(Math.random() * this.objectTypes.length);
+      this.detectedObject = this.objectTypes[randomIndex];
+    },
+    
+    toggleMotorStatus() {
+      this.motorStatus = this.motorStatus === 'ACTIVO' ? 'INACTIVO' : 'ACTIVO';
+    }
+  }
+}
+</script>
+
+<style>
+:root {
+  --primary-color: #2ecc71;
+  --secondary-color: #3498db;
+  --danger-color: #e74c3c;
+  --warning-color: #f39c12;
+  --dark-color: #2c3e50;
+  --light-color: #ecf0f1;
+  --plastic-color: #3498db;
+  --paper-color: #f1c40f;
+  --aluminum-color: #95a5a6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f5f7fa;
+  color: var(--dark-color);
+  line-height: 1.6;
+}
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 30px 0;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.bin-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bin-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.bin-header {
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+.bin-plastic .bin-header {
+  background-color: var(--plastic-color);
+}
+
+.bin-paper .bin-header {
+  background-color: var(--paper-color);
+}
+
+.bin-aluminum .bin-header {
+  background-color: var(--aluminum-color);
+}
+
+.bin-icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.bin-content {
+  padding: 20px;
+}
+
+.material-item {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.material-item:last-child {
+  border-bottom: none;
+}
+
+.material-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.material-icon {
+  font-size: 1.5rem;
+}
+
+.material-value {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: right;
+  margin-bottom: 5px;
+}
+
+.progress-bar {
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.plastic-progress {
+  background-color: var(--plastic-color);
+}
+
+.paper-progress {
+  background-color: var(--paper-color);
+}
+
+.aluminum-progress {
+  background-color: var(--aluminum-color);
+}
+
+.status-panel {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.status-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  text-align: center;
+}
+
+.status-value {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.status-label {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
+
+.system-active {
+  color: var(--primary-color);
+}
+
+.system-inactive {
+  color: var(--danger-color);
+}
+
+.object-detected {
+  color: var(--warning-color);
+}
+
+.stats-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.stat-label {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+}
+</style>
